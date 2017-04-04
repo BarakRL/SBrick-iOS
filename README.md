@@ -9,7 +9,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
-SWift 3, iOS 10+
+Swift 3.0, Probably iOS 10+
 
 ## Installation
 
@@ -25,7 +25,6 @@ pod "SBrick-iOS"
 ```swift
 var manager = SBrickManager(delegate: self)
 manager.startDiscovery()
-
 
 func sbrickManager(_ sbrickManager: SBrickManager, didDiscover sbrick: SBrick) {
     //connect
