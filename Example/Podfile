@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SBrick-iOS_Example' do
+  pod 'SBrick-iOS', :path => '../'
+
+  target 'SBrick-iOS_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
