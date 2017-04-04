@@ -1,25 +1,125 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="SBrick_iOS_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tzn-d8-Mho">
+                                <rect key="frame" x="168" y="313" width="40" height="40"/>
+                                <color key="backgroundColor" name="selectedMenuItemColor" catalog="System" colorSpace="catalog"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="7AD-3w-3X8"/>
+                                    <constraint firstAttribute="height" constant="40" id="hQo-Q2-dcE"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="■"/>
+                                <connections>
+                                    <action selector="stop:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="HbK-rb-e4N"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HcH-Mi-a7D">
+                                <rect key="frame" x="228" y="313" width="40" height="40"/>
+                                <color key="backgroundColor" name="selectedMenuItemColor" catalog="System" colorSpace="catalog"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="3FR-Ou-ZKf"/>
+                                    <constraint firstAttribute="width" constant="40" id="cHu-qs-Qxg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="▶︎"/>
+                                <connections>
+                                    <action selector="halfPowerCW:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="O8a-Sf-vqS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KYc-EU-Wgq">
+                                <rect key="frame" x="48" y="313" width="40" height="40"/>
+                                <color key="backgroundColor" name="selectedMenuItemColor" catalog="System" colorSpace="catalog"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="8xn-Bm-Yt8"/>
+                                    <constraint firstAttribute="width" constant="40" id="zzX-fA-Ig0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="◀︎◀︎"/>
+                                <connections>
+                                    <action selector="fullPowerCCW:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ow7-SX-8nh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edW-tw-B9S">
+                                <rect key="frame" x="108" y="313" width="40" height="40"/>
+                                <color key="backgroundColor" name="selectedMenuItemColor" catalog="System" colorSpace="catalog"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Xy4-7g-w58"/>
+                                    <constraint firstAttribute="width" constant="40" id="ybU-uZ-q2N"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="◀︎"/>
+                                <connections>
+                                    <action selector="halfPowerCCW:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="RC1-Ka-1e3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b7N-eh-UMU">
+                                <rect key="frame" x="288" y="313" width="40" height="40"/>
+                                <color key="backgroundColor" name="selectedMenuItemColor" catalog="System" colorSpace="catalog"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="X1b-4t-TGQ"/>
+                                    <constraint firstAttribute="width" constant="40" id="tXc-5p-tbW"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="▶︎▶︎"/>
+                                <connections>
+                                    <action selector="fullPowerCW:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="j6y-qr-kKQ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvC-Eb-E3R">
+                                <rect key="frame" x="46" y="252" width="283" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="b7N-eh-UMU" firstAttribute="top" secondItem="tzn-d8-Mho" secondAttribute="top" id="0MR-Ia-6aO"/>
+                            <constraint firstItem="tzn-d8-Mho" firstAttribute="leading" secondItem="edW-tw-B9S" secondAttribute="trailing" constant="20" id="3uO-aQ-HY7"/>
+                            <constraint firstItem="tzn-d8-Mho" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="Byy-R6-evG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yvC-Eb-E3R" secondAttribute="trailing" constant="30" id="Inj-44-Bca"/>
+                            <constraint firstItem="b7N-eh-UMU" firstAttribute="leading" secondItem="HcH-Mi-a7D" secondAttribute="trailing" constant="20" id="KRd-8Y-L7o"/>
+                            <constraint firstItem="yvC-Eb-E3R" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="30" id="MRm-NL-VSN"/>
+                            <constraint firstItem="KYc-EU-Wgq" firstAttribute="top" secondItem="tzn-d8-Mho" secondAttribute="top" id="N6z-hZ-DJn"/>
+                            <constraint firstItem="HcH-Mi-a7D" firstAttribute="leading" secondItem="tzn-d8-Mho" secondAttribute="trailing" constant="20" id="VuJ-2f-wrP"/>
+                            <constraint firstItem="tzn-d8-Mho" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="gAz-ox-hOm"/>
+                            <constraint firstItem="edW-tw-B9S" firstAttribute="top" secondItem="tzn-d8-Mho" secondAttribute="top" id="i4c-Y7-4qe"/>
+                            <constraint firstItem="tzn-d8-Mho" firstAttribute="top" secondItem="yvC-Eb-E3R" secondAttribute="bottom" constant="40" id="iQ3-rD-Tss"/>
+                            <constraint firstItem="HcH-Mi-a7D" firstAttribute="top" secondItem="tzn-d8-Mho" secondAttribute="top" id="p9X-jQ-nPP"/>
+                            <constraint firstItem="edW-tw-B9S" firstAttribute="leading" secondItem="KYc-EU-Wgq" secondAttribute="trailing" constant="20" id="ssG-IH-0xy"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="statusLabel" destination="yvC-Eb-E3R" id="Wg7-xj-l2j"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="36.431784107946029"/>
         </scene>
     </scenes>
 </document>

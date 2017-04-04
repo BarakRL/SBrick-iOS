@@ -1,0 +1,582 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		05ACAF248055C9AC75B98FC75B7A0714 /* Pods-SBrick-iOS_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = ABA03C6C230BBFA354688375AE8CA8FB /* Pods-SBrick-iOS_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		13BECADAE64A279088AAD810CA7E2907 /* Pods-SBrick-iOS_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C690680489DC038FCF67F0DAD2476956 /* Pods-SBrick-iOS_Example-dummy.m */; };
+		333A8994D401D16AACB5B3573EC733E8 /* SBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A22DD825A113A80C28CEE460F3960A /* SBrick.swift */; };
+		57D238BAACA6ACE17372FF2A56CEE7ED /* ManufacturerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60194432EEE0B8F277D994005D284DA4 /* ManufacturerData.swift */; };
+		7C6D770401BAB64FD1C552DC5DE6A452 /* SBrick-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1731AA5AFE29C4A44729705D509FFB17 /* SBrick-iOS-dummy.m */; };
+		BA154F37C8D6249B642D8A97929C6B49 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EA00AEA27063E54337CB3252DEA73FF /* CoreBluetooth.framework */; };
+		BBBC65C12E26D073DBB5ED692B3D5282 /* SBrickManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81ABFDD576863EEBDF00A592445B05D /* SBrickManager.swift */; };
+		EAAD348726E3272CEB475F0A3A3C13EA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93972F6957789C9E8A0EFA25275C82D1 /* Foundation.framework */; };
+		EAD88ABD73E0F292B6C5E56F80C34DB9 /* SBrick-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AC06EF0F7938E73CF6D41FAA8CBDF3E9 /* SBrick-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F855322AA4E767C9D66EA2B427EB09A6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93972F6957789C9E8A0EFA25275C82D1 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		24B8B7482E70DDE67EBE7D1E927D5C80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8F3F0065C643F8F08AE55064F6DE040F;
+			remoteInfo = "SBrick-iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		16844D4615D3E87F3519A10B419F0057 /* Pods-SBrick-iOS_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SBrick-iOS_Example-resources.sh"; sourceTree = "<group>"; };
+		1731AA5AFE29C4A44729705D509FFB17 /* SBrick-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SBrick-iOS-dummy.m"; sourceTree = "<group>"; };
+		1EA00AEA27063E54337CB3252DEA73FF /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CoreBluetooth.framework; sourceTree = DEVELOPER_DIR; };
+		2E707027DA295D03707889D277BD8930 /* Pods-SBrick-iOS_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-SBrick-iOS_Example.modulemap"; sourceTree = "<group>"; };
+		32A22DD825A113A80C28CEE460F3960A /* SBrick.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SBrick.swift; sourceTree = "<group>"; };
+		3BA175C392967521AF428433366EB47E /* SBrick-iOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SBrick-iOS-prefix.pch"; sourceTree = "<group>"; };
+		3CA0C20473F2113AA938268F48FE1CB0 /* Pods_SBrick_iOS_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SBrick_iOS_Example.framework; path = "Pods-SBrick-iOS_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		60194432EEE0B8F277D994005D284DA4 /* ManufacturerData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ManufacturerData.swift; sourceTree = "<group>"; };
+		686408EA474C5A2EF3DF410C18DE9401 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6DA954A0B83B112F445BDABC7678E0B9 /* Pods-SBrick-iOS_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SBrick-iOS_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		93972F6957789C9E8A0EFA25275C82D1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A69DD6F6E7D992AB18F310B5431FBD5C /* SBrick-iOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "SBrick-iOS.xcconfig"; sourceTree = "<group>"; };
+		AB62EB0F18C3589120A962079A75C119 /* Pods-SBrick-iOS_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SBrick-iOS_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		ABA03C6C230BBFA354688375AE8CA8FB /* Pods-SBrick-iOS_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SBrick-iOS_Example-umbrella.h"; sourceTree = "<group>"; };
+		AC06EF0F7938E73CF6D41FAA8CBDF3E9 /* SBrick-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SBrick-iOS-umbrella.h"; sourceTree = "<group>"; };
+		B4F9602348A0BCBF5AC26816D9CFA810 /* SBrick-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "SBrick-iOS.modulemap"; sourceTree = "<group>"; };
+		B56EB02F9EBA365D650F797B13408899 /* Pods-SBrick-iOS_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SBrick-iOS_Example-frameworks.sh"; sourceTree = "<group>"; };
+		B7D74AB146D0DE8535A0AE8D1A135AA0 /* SBrick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SBrick.framework; path = "SBrick-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB5FBADEBC8E24D5E953030345713831 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BC85EA2ED1127654421949C8E3996885 /* Pods-SBrick-iOS_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SBrick-iOS_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		C690680489DC038FCF67F0DAD2476956 /* Pods-SBrick-iOS_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SBrick-iOS_Example-dummy.m"; sourceTree = "<group>"; };
+		C81ABFDD576863EEBDF00A592445B05D /* SBrickManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SBrickManager.swift; sourceTree = "<group>"; };
+		E833B2A39542CBD41401138AFB75658B /* Pods-SBrick-iOS_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SBrick-iOS_Example.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		06CC94402E207B5E5D550D3CC7500E62 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F855322AA4E767C9D66EA2B427EB09A6 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A9D531CE3E8DE658C57A34BF7FA735A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA154F37C8D6249B642D8A97929C6B49 /* CoreBluetooth.framework in Frameworks */,
+				EAAD348726E3272CEB475F0A3A3C13EA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1828F582DD4AC4800254E5601C903A76 /* SBrick-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				C3CA988722F070ECD4FE8ECA1893F218 /* SBrick-iOS */,
+				92C2B8831C35B9FE6DC4274D2D35746A /* Support Files */,
+			);
+			name = "SBrick-iOS";
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		1E14D3A96018386FEC87D3B194B42375 /* Pods-SBrick-iOS_Example */ = {
+			isa = PBXGroup;
+			children = (
+				BB5FBADEBC8E24D5E953030345713831 /* Info.plist */,
+				2E707027DA295D03707889D277BD8930 /* Pods-SBrick-iOS_Example.modulemap */,
+				BC85EA2ED1127654421949C8E3996885 /* Pods-SBrick-iOS_Example-acknowledgements.markdown */,
+				6DA954A0B83B112F445BDABC7678E0B9 /* Pods-SBrick-iOS_Example-acknowledgements.plist */,
+				C690680489DC038FCF67F0DAD2476956 /* Pods-SBrick-iOS_Example-dummy.m */,
+				B56EB02F9EBA365D650F797B13408899 /* Pods-SBrick-iOS_Example-frameworks.sh */,
+				16844D4615D3E87F3519A10B419F0057 /* Pods-SBrick-iOS_Example-resources.sh */,
+				ABA03C6C230BBFA354688375AE8CA8FB /* Pods-SBrick-iOS_Example-umbrella.h */,
+				AB62EB0F18C3589120A962079A75C119 /* Pods-SBrick-iOS_Example.debug.xcconfig */,
+				E833B2A39542CBD41401138AFB75658B /* Pods-SBrick-iOS_Example.release.xcconfig */,
+			);
+			name = "Pods-SBrick-iOS_Example";
+			path = "Target Support Files/Pods-SBrick-iOS_Example";
+			sourceTree = "<group>";
+		};
+		2FA5F058DD84471A0976FA99781D8B87 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1828F582DD4AC4800254E5601C903A76 /* SBrick-iOS */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		3CD40F8C056B7CE3BBE04EA16872F4FF /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				1E14D3A96018386FEC87D3B194B42375 /* Pods-SBrick-iOS_Example */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				708A1C830C0E998469D92C7BA82C2290 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		708A1C830C0E998469D92C7BA82C2290 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				1EA00AEA27063E54337CB3252DEA73FF /* CoreBluetooth.framework */,
+				93972F6957789C9E8A0EFA25275C82D1 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				2FA5F058DD84471A0976FA99781D8B87 /* Development Pods */,
+				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
+				AF18F2D9AA9C1F4A688B72FEBC397BC0 /* Products */,
+				3CD40F8C056B7CE3BBE04EA16872F4FF /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		92C2B8831C35B9FE6DC4274D2D35746A /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				686408EA474C5A2EF3DF410C18DE9401 /* Info.plist */,
+				B4F9602348A0BCBF5AC26816D9CFA810 /* SBrick-iOS.modulemap */,
+				A69DD6F6E7D992AB18F310B5431FBD5C /* SBrick-iOS.xcconfig */,
+				1731AA5AFE29C4A44729705D509FFB17 /* SBrick-iOS-dummy.m */,
+				3BA175C392967521AF428433366EB47E /* SBrick-iOS-prefix.pch */,
+				AC06EF0F7938E73CF6D41FAA8CBDF3E9 /* SBrick-iOS-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/SBrick-iOS";
+			sourceTree = "<group>";
+		};
+		AF18F2D9AA9C1F4A688B72FEBC397BC0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3CA0C20473F2113AA938268F48FE1CB0 /* Pods_SBrick_iOS_Example.framework */,
+				B7D74AB146D0DE8535A0AE8D1A135AA0 /* SBrick.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B44E61857E0730D2B6249E6C376691A5 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				60194432EEE0B8F277D994005D284DA4 /* ManufacturerData.swift */,
+				32A22DD825A113A80C28CEE460F3960A /* SBrick.swift */,
+				C81ABFDD576863EEBDF00A592445B05D /* SBrickManager.swift */,
+			);
+			name = Classes;
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		C3CA988722F070ECD4FE8ECA1893F218 /* SBrick-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				B44E61857E0730D2B6249E6C376691A5 /* Classes */,
+			);
+			name = "SBrick-iOS";
+			path = "SBrick-iOS";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		638A36C832E98E206366138FB4557562 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EAD88ABD73E0F292B6C5E56F80C34DB9 /* SBrick-iOS-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		902B461BFC2C2CADBEF140C0EFE329FB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05ACAF248055C9AC75B98FC75B7A0714 /* Pods-SBrick-iOS_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		672269BE0B743D7B20A6ED1D8F16BEC6 /* Pods-SBrick-iOS_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1FA7EBF572186DCFF4793FFC229F6ECB /* Build configuration list for PBXNativeTarget "Pods-SBrick-iOS_Example" */;
+			buildPhases = (
+				B76182166804BDAC7CF95CDBDB1FDBD1 /* Sources */,
+				06CC94402E207B5E5D550D3CC7500E62 /* Frameworks */,
+				902B461BFC2C2CADBEF140C0EFE329FB /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7039FF2269A293AF4F801BEA432E714F /* PBXTargetDependency */,
+			);
+			name = "Pods-SBrick-iOS_Example";
+			productName = "Pods-SBrick-iOS_Example";
+			productReference = 3CA0C20473F2113AA938268F48FE1CB0 /* Pods_SBrick_iOS_Example.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8F3F0065C643F8F08AE55064F6DE040F /* SBrick-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F9063CB2CA1499998C0EA10542AB984D /* Build configuration list for PBXNativeTarget "SBrick-iOS" */;
+			buildPhases = (
+				6934B1471F05A8345512325DE59FE188 /* Sources */,
+				5A9D531CE3E8DE658C57A34BF7FA735A /* Frameworks */,
+				638A36C832E98E206366138FB4557562 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SBrick-iOS";
+			productName = "SBrick-iOS";
+			productReference = B7D74AB146D0DE8535A0AE8D1A135AA0 /* SBrick.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = AF18F2D9AA9C1F4A688B72FEBC397BC0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				672269BE0B743D7B20A6ED1D8F16BEC6 /* Pods-SBrick-iOS_Example */,
+				8F3F0065C643F8F08AE55064F6DE040F /* SBrick-iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6934B1471F05A8345512325DE59FE188 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57D238BAACA6ACE17372FF2A56CEE7ED /* ManufacturerData.swift in Sources */,
+				7C6D770401BAB64FD1C552DC5DE6A452 /* SBrick-iOS-dummy.m in Sources */,
+				333A8994D401D16AACB5B3573EC733E8 /* SBrick.swift in Sources */,
+				BBBC65C12E26D073DBB5ED692B3D5282 /* SBrickManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B76182166804BDAC7CF95CDBDB1FDBD1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13BECADAE64A279088AAD810CA7E2907 /* Pods-SBrick-iOS_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7039FF2269A293AF4F801BEA432E714F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "SBrick-iOS";
+			target = 8F3F0065C643F8F08AE55064F6DE040F /* SBrick-iOS */;
+			targetProxy = 24B8B7482E70DDE67EBE7D1E927D5C80 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		27CF223214397EBA96933D21E2BAA5D1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E833B2A39542CBD41401138AFB75658B /* Pods-SBrick-iOS_Example.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-SBrick-iOS_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SBrick-iOS_Example/Pods-SBrick-iOS_Example.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_SBrick_iOS_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		643C76AA582046977B7877822ED7A258 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		8DEFF092B794C76B70EA1EF4924B0D09 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB62EB0F18C3589120A962079A75C119 /* Pods-SBrick-iOS_Example.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-SBrick-iOS_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SBrick-iOS_Example/Pods-SBrick-iOS_Example.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_SBrick_iOS_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C03B8870130C98D1B02B59D003687524 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C2D355A86D0AAF57D9E82D9FD4223510 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A69DD6F6E7D992AB18F310B5431FBD5C /* SBrick-iOS.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SBrick-iOS/SBrick-iOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SBrick-iOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SBrick-iOS/SBrick-iOS.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = SBrick;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		DAB348D27ABFCADD231C6F872A563E3F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A69DD6F6E7D992AB18F310B5431FBD5C /* SBrick-iOS.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SBrick-iOS/SBrick-iOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SBrick-iOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SBrick-iOS/SBrick-iOS.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = SBrick;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1FA7EBF572186DCFF4793FFC229F6ECB /* Build configuration list for PBXNativeTarget "Pods-SBrick-iOS_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8DEFF092B794C76B70EA1EF4924B0D09 /* Debug */,
+				27CF223214397EBA96933D21E2BAA5D1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				643C76AA582046977B7877822ED7A258 /* Debug */,
+				C03B8870130C98D1B02B59D003687524 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F9063CB2CA1499998C0EA10542AB984D /* Build configuration list for PBXNativeTarget "SBrick-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAB348D27ABFCADD231C6F872A563E3F /* Debug */,
+				C2D355A86D0AAF57D9E82D9FD4223510 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

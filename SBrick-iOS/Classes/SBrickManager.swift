@@ -9,25 +9,25 @@
 import Foundation
 import CoreBluetooth
 
-protocol SBrickManagerDelegate: class {
+public protocol SBrickManagerDelegate: class {
     func sbrickManager(_ sbrickManager: SBrickManager, didDiscover sbrick: SBrick)
     func sbrickManager(_ sbrickManager: SBrickManager, didUpdateBluetoothState bluetoothState: CBManagerState)
 }
 
-class SBrickManager: NSObject, CBCentralManagerDelegate {
+public class SBrickManager: NSObject {
             
     private var centralManager:CBCentralManager!
-    var sbricks = [SBrick]()
+    public fileprivate(set) var sbricks = [SBrick]()
     
     weak var delegate: SBrickManagerDelegate?
     
-    init(delegate: SBrickManagerDelegate) {
+    public init(delegate: SBrickManagerDelegate) {
         super.init()
         self.centralManager = CBCentralManager(delegate: self, queue: nil)
         self.delegate = delegate
     }
     
-    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+    public func centralManagerDidUpdateState(_ central: CBCentralManager) {
         
         switch central.state {
         
@@ -41,13 +41,14 @@ class SBrickManager: NSObject, CBCentralManagerDelegate {
             break
             
         }
-                
-        delegate?.sbrickManager(self, didUpdateBluetoothState: central.state)
         
+        DispatchQueue.main.async {
+            self.delegate?.sbrickManager(self, didUpdateBluetoothState: central.state)
+        }
     }
     
-    var shouldStartDiscovery: Bool = false
-    func startDiscovery() {
+    private var shouldStartDiscovery: Bool = false
+    public func startDiscovery() {
         
         print("Starting discovery")
         
@@ -59,13 +60,31 @@ class SBrickManager: NSObject, CBCentralManagerDelegate {
         }
     }
     
-    func stopDiscovery() {
+    public func stopDiscovery() {
         
         print("Stopping discovery")
         
         shouldStartDiscovery = false
         centralManager.stopScan()
     }
+    
+    
+    
+    fileprivate func add(sbrick: SBrick) {
+        
+        print("Found SBrick NAME: \(sbrick.name)")
+        print("SBrick UUID: \(sbrick.peripheral.identifier)")
+        
+        sbricks.append(sbrick)
+    }
+    
+   public func connect(to sbrick: SBrick) {
+        // Request a connection to the peripheral
+        centralManager.connect(sbrick.peripheral, options: nil)
+    }
+}
+
+extension SBrickManager: CBCentralManagerDelegate {
     
     /*
      Invoked when the central manager discovers a peripheral while scanning.
@@ -82,9 +101,10 @@ class SBrickManager: NSObject, CBCentralManagerDelegate {
      RSSI - The current received signal strength indicator (RSSI) of the peripheral, in decibels.
      */
     
-    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+    public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         
         if let sbrick = SBrick(peripheral: peripheral, advertisementData: advertisementData) {
+            
             
             DispatchQueue.main.async {
                 
@@ -101,19 +121,6 @@ class SBrickManager: NSObject, CBCentralManagerDelegate {
         }
     }
     
-    private func add(sbrick: SBrick) {
-        
-        print("Found SBrick NAME: \(sbrick.name)")
-        print("SBrick UUID: \(sbrick.peripheral.identifier)")
-        
-        sbricks.append(sbrick)
-    }
-    
-    func connect(to sbrick: SBrick) {
-        // Request a connection to the peripheral
-        centralManager.connect(sbrick.peripheral, options: nil)
-    }
-    
     /*
      Invoked when a connection is successfully created with a peripheral.
      
@@ -121,16 +128,15 @@ class SBrickManager: NSObject, CBCentralManagerDelegate {
      You typically implement this method to set the peripheral’s delegate and to discover its services.
      */
     
-    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        print("**** SUCCESSFULLY CONNECTED TO SBRICK!!!")        
+    public func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        print("**** SUCCESSFULLY CONNECTED TO SBRICK!!!")
         
         for sbrick in sbricks {
             if sbrick.peripheral == peripheral {
                 sbrick.didConnect()
             }
         }
-    }
-    
+    }    
     
     /*
      Invoked when the central manager fails to create a connection with a peripheral.
@@ -139,11 +145,9 @@ class SBrickManager: NSObject, CBCentralManagerDelegate {
      in which case you may attempt to connect to the peripheral again.
      */
     
-    
-    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+    public func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         print("**** CONNECTION TO SBRICK FAILED!!!")
     }
-    
     
     /*
      Invoked when an existing connection with a peripheral is torn down.
@@ -156,7 +160,7 @@ class SBrickManager: NSObject, CBCentralManagerDelegate {
      */
     
     
-    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+    public func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         
         print("**** DISCONNECTED FROM SBRICK!!!")
         
@@ -172,8 +176,6 @@ class SBrickManager: NSObject, CBCentralManagerDelegate {
         }
         
     }
-    
-    
 }
 
 extension Array where Element: Equatable {

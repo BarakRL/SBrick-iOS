@@ -8,15 +8,15 @@
 
 import Foundation
 
-class ManufacturerData {
+public class ManufacturerData {
     
-    private(set) var productId: UInt8 = 0
-    private(set) var hardwareVersion: String = ""
-    private(set) var firmwareVersion: String = ""
-    private(set) var deviceIdentifier: String = ""
-    private(set) var isSecured: Bool = false
+    public private(set) var productId: UInt8 = 0
+    public private(set) var hardwareVersion: String = ""
+    public private(set) var firmwareVersion: String = ""
+    public private(set) var deviceIdentifier: String = ""
+    public private(set) var isSecured: Bool = false
     
-    init?(data: Data) {
+    internal init?(data: Data) {
         
         let bytes = [UInt8](data)
         guard bytes.count > 2 && bytes[0] == 152 && bytes[1] == 1 else { return nil }
