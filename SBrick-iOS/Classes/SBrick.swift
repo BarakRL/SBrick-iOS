@@ -18,6 +18,8 @@ public protocol SBrickDelegate: class {
 
 public class SBrick: NSObject {
     
+    public fileprivate(set) var channelValues:[UInt16]
+    
     public enum Command {
         
         case drive(channelId: UInt8, cw: Bool, power: UInt8)
@@ -51,9 +53,9 @@ public class SBrick: NSObject {
     
     static let RemoteControlCommandsCharacteristicUUID = "02B8CBCC-0E25-4BDA-8790-A15F53E6010F"
     fileprivate var remoteControlCommandsCharacteristic:CBCharacteristic?
-    //TO DO:
-    //static let QuickDriveCharacteristicUUID = "489A6AE0-C1AB-4C9C-BDB2-11D373C1B7FB"
-    //var quickDriveCharacteristic:CBCharacteristic?
+    
+    static let QuickDriveCharacteristicUUID = "489A6AE0-C1AB-4C9C-BDB2-11D373C1B7FB"
+    var quickDriveCharacteristic:CBCharacteristic?
     
     
     internal let peripheral:CBPeripheral
@@ -72,6 +74,8 @@ public class SBrick: NSObject {
         self.name = advertisementData[CBAdvertisementDataLocalNameKey] as? String ?? "N/A"
         self.peripheral = peripheral
         self.manufacturerData = manufacturerData
+        
+        self.channelValues = []
         
         super.init()
     }
@@ -128,6 +132,17 @@ public class SBrick: NSObject {
     }
 }
 
+extension SBrick {
+    
+    public static func voltage(from value: UInt16) -> Double {
+        return Double(value) * 0.83875 / 2047.0
+    }
+    
+    public static func celsiusTemperature(from value: UInt16) -> Double {
+        return Double(value) / 118.85795 - 160
+    }
+}
+
 extension SBrick: CBPeripheralDelegate {
     
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
@@ -141,7 +156,7 @@ extension SBrick: CBPeripheralDelegate {
             
             for service in services {
                 if service.uuid == CBUUID(string: SBrick.RemoteControlServiceUUID) {
-                    peripheral.discoverCharacteristics([CBUUID(string: SBrick.RemoteControlCommandsCharacteristicUUID)], for: service)
+                    peripheral.discoverCharacteristics([CBUUID(string: SBrick.RemoteControlCommandsCharacteristicUUID), CBUUID(string: SBrick.QuickDriveCharacteristicUUID)], for: service)
                 }
             }
         }
@@ -158,10 +173,18 @@ extension SBrick: CBPeripheralDelegate {
         if let characteristics = service.characteristics {
             
             for characteristic in characteristics {
+                
+                if characteristic.uuid == CBUUID(string: SBrick.QuickDriveCharacteristicUUID) {
+                    quickDriveCharacteristic = characteristic
+                    peripheral.setNotifyValue(true, for: characteristic)
+                }
+                
                 if characteristic.uuid == CBUUID(string: SBrick.RemoteControlCommandsCharacteristicUUID) {
                     remoteControlCommandsCharacteristic = characteristic
                     peripheral.setNotifyValue(true, for: characteristic)
-                    
+                }
+                
+                if quickDriveCharacteristic != nil && remoteControlCommandsCharacteristic != nil {
                     DispatchQueue.main.async {
                         self.delegate?.sbrickReady(self)
                     }
@@ -186,10 +209,97 @@ extension SBrick: CBPeripheralDelegate {
             return
         }
         
-        guard characteristic.uuid == CBUUID(string: SBrick.RemoteControlCommandsCharacteristicUUID) else { return }        
+//        guard characteristic.uuid == CBUUID(string: SBrick.RemoteControlCommandsCharacteristicUUID) else { return }        
+        
+        if let data = characteristic.value {
+            parse(bytes: [UInt8](data))
+        }
         
         DispatchQueue.main.async {
             self.delegate?.sbrick(self, didRead: characteristic.value)
         }
     }
+    
+    private func parse(bytes: [UInt8]) {
+        
+        var sectionFirstIndex: Int = 0
+        var sectionLastIndex: Int = 0
+        var sectionBytes = [UInt8]()
+        
+        for index in 0..<bytes.count {
+            
+            if index == sectionFirstIndex {
+                sectionLastIndex = index +  Int(bytes[index])
+            }
+            else {
+                sectionBytes.append(bytes[index])
+                
+                if index == sectionLastIndex {
+                    parse(record: sectionBytes)
+                    sectionBytes = []
+                    sectionFirstIndex = index + 1
+                }
+            }
+        }
+    }
+    
+    private func parse(record sectionBytes: [UInt8]) {
+        
+        guard sectionBytes.count > 0 else { return }
+        
+        let recordIdentifier = sectionBytes[0]
+        var bytes = sectionBytes
+        bytes.remove(at: 0) //remove first byte (record identifier)
+        
+        //print("record: \(recordIdentifier) bytes: \(bytes)")
+        
+        switch recordIdentifier {
+            
+        //04 Command response
+        //  04 <1: return code > <n-2: return value >
+        case 4:
+            guard bytes.count > 0 else { return }
+            let returnCode = bytes[0]
+            
+            //00: Successful operation
+            //01: Invalid data length
+            //02: Invalid parameter
+            //03: No such command
+            //04: No authentication needed
+            //05: Authentication error
+            //06: Authentication needed
+            //08: Thermal protection is active
+            //09: The system is in a state where the command does not make sense
+            
+            switch returnCode {
+            case 0:
+                //print("Successful operation")
+                break
+                
+            default:
+                break
+            }
+            
+            
+        //06 Voltage measurement
+        //  06 < measurement data >
+        case 6:
+            self.channelValues.removeAll()
+            while bytes.count > 1 {
+                
+                let data = Data(bytes: Array(bytes[0...1]))
+                let value = UInt16(littleEndian: data.withUnsafeBytes { $0.pointee })
+//                print("ADC channel value: \(value) voltage: \(Double(value) * 0.83875 / 2047.0)")
+                
+                self.channelValues.append(value)
+                
+                bytes.removeSubrange(0...1)
+            }
+            
+        default:
+            break
+        }
+        
+    }
+    
 }

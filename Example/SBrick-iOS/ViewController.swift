@@ -51,15 +51,21 @@ class ViewController: UIViewController, SBrickManagerDelegate, SBrickDelegate {
         
         statusLabel.text = "SBrick ready!"
         
-        sbrick.send(command: .getBrickID)
-        sbrick.read()
+        sbrick.send([0x2C,0x01,0x03,0x05,0x07,0x08,0x09])
+        sbrick.send([0x2E,0x01,0x03,0x05,0x07,0x08,0x09])        
+
     }
     
     func sbrick(_ sbrick: SBrick, didRead data: Data?) {
         
-        guard let data = data else { return }
-        print("sbrick [\(sbrick.name)] did read: \([UInt8](data))")
-    }    
+//        guard let data = data else { return }
+//        print("sbrick [\(sbrick.name)] did read: \([UInt8](data))")
+        
+        if sbrick.channelValues.count > 0 {
+            let channelValue = sbrick.channelValues[0]
+            print("sbrick channel 0 voltage: \(SBrick.voltage(from: channelValue))")
+        }
+    }
     
     @IBAction func stop(_ sender: Any) {
         guard let sbrick = manager.sbricks.first else { return }

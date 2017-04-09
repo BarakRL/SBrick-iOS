@@ -27,33 +27,27 @@ public class ManufacturerData {
     
     private func parse(bytes: [UInt8]) {
         
-        var i: Int = 0
-        var sectionLength: Int = 2 //first section length is 2: [152, 1]
+        var sectionFirstIndex: Int = 2
+        var sectionLastIndex: Int = 0 //first section length is 2: [152, 1]
         var sectionBytes = [UInt8]()
-        
-        var curSection = 1
         
         //iterate over bytes, break them down to groups of record bytes
         //see: https://social.sbrick.com/wiki/view/pageId/11/slug/the-sbrick-ble-protocol
         
-        for byte in bytes {
+        for index in 2..<bytes.count {
             
-            //end of section
-            if i == sectionLength {
-                
-                parse(sectionBytes: sectionBytes)
-                
-                //next secion
-                sectionLength = i + Int(byte) + 1
-                sectionBytes = []
-                curSection += 1
-                
+            if index == sectionFirstIndex {
+                sectionLastIndex = index +  Int(bytes[index])
             }
             else {
-                sectionBytes.append(byte)
+                sectionBytes.append(bytes[index])
+                
+                if index == sectionLastIndex {
+                    parse(sectionBytes: sectionBytes)
+                    sectionBytes = []
+                    sectionFirstIndex = index + 1
+                }
             }
-            
-            i += 1
         }
     }
     
