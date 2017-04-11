@@ -51,15 +51,40 @@ class ViewController: UIViewController, SBrickManagerDelegate, SBrickDelegate {
         
         statusLabel.text = "SBrick ready!"
         
-        sbrick.send([0x2C,0x01,0x03,0x05,0x07,0x08,0x09])
-        sbrick.send([0x2E,0x01,0x03,0x05,0x07,0x08,0x09])        
+        sbrick.send(command: .write(bytes: [0x2C,0x01,0x03,0x05,0x07,0x08,0x09]))
+//        sbrick.send([0x2E,0x01,0x03,0x05,0x07,0x08,0x09])
 
+        
+        adcTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { [weak self] (timer) in
+            
+            guard let _self = self else { return }
+            guard let sbrick = _self.manager.sbricks.first else { return }
+            
+            sbrick.send(command: .queryADC(channelId: 0x01)) { (bytes) in
+                
+                let voltage = (bytes.voltageValue() - 1.4) / 1.4
+                print("ADC: \(voltage)")
+                
+                if voltage > 0.7 && !_self.isDriving {
+                    _self.isDriving = true
+                    sbrick.send(command: .drive(channelId: 0x02, cw: true, power: 255))
+                }
+                else if voltage < 0.7 && _self.isDriving {
+                    _self.isDriving = false
+                    sbrick.send(command: .stop(channelId: 0x02))
+                }
+            }
+        })
     }
+    
+    var isDriving = false
+    
+    var adcTimer: Timer?
     
     func sbrick(_ sbrick: SBrick, didRead data: Data?) {
         
-//        guard let data = data else { return }
-//        print("sbrick [\(sbrick.name)] did read: \([UInt8](data))")
+        guard let data = data else { return }
+        print("sbrick [\(sbrick.name)] did read: \([UInt8](data))")
         
         if sbrick.channelValues.count > 0 {
             let channelValue = sbrick.channelValues[0]
@@ -74,22 +99,30 @@ class ViewController: UIViewController, SBrickManagerDelegate, SBrickDelegate {
     
     @IBAction func halfPowerCW(_ sender: Any) {
         guard let sbrick = manager.sbricks.first else { return }
-        sbrick.send(command: .drive(channelId: 0, cw: true, power: 0x80))
+        sbrick.send(command: .drive(channelId: 0, cw: true, power: 0x80)) { bytes in
+            print("ok")
+        }
     }
     
     @IBAction func fullPowerCW(_ sender: Any) {
         guard let sbrick = manager.sbricks.first else { return }
-        sbrick.send(command: .drive(channelId: 0, cw: true, power: 0xFF))
+        sbrick.send(command: .drive(channelId: 0, cw: true, power: 0xFF)) { bytes in
+            print("ok")
+        }
     }
     
     @IBAction func halfPowerCCW(_ sender: Any) {
         guard let sbrick = manager.sbricks.first else { return }
-        sbrick.send(command: .drive(channelId: 0, cw: false, power: 0x80))
+        sbrick.send(command: .drive(channelId: 0, cw: false, power: 0x80)) { bytes in
+            print("ok")
+        }
     }
     
     @IBAction func fullPowerCCW(_ sender: Any) {
         guard let sbrick = manager.sbricks.first else { return }
-        sbrick.send(command: .drive(channelId: 0, cw: false, power: 0xFF))
+        sbrick.send(command: .drive(channelId: 0, cw: false, power: 0xFF)) { bytes in
+            print("ok")
+        }
     }
 }
 

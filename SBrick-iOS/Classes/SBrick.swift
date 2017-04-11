@@ -10,7 +10,6 @@ import Foundation
 import CoreBluetooth
 
 public protocol SBrickDelegate: class {
-    func sbrick(_ sbrick: SBrick, didRead data: Data?)
     func sbrickConnected(_ sbrick: SBrick)
     func sbrickDisconnected(_ sbrick: SBrick)
     func sbrickReady(_ sbrick: SBrick)
@@ -19,36 +18,6 @@ public protocol SBrickDelegate: class {
 public class SBrick: NSObject {
     
     public fileprivate(set) var channelValues:[UInt16]
-    
-    public enum Command {
-        
-        case drive(channelId: UInt8, cw: Bool, power: UInt8)
-        case stop(channelId: UInt8)
-        case getBrickID
-        case getWatchDog
-        
-        func command() -> [UInt8] {
-            
-            switch self {
-                
-            case .drive(let channelId, let cw, let power):
-                
-                return [0x01, channelId, cw ? 0x01: 0x00, power]
-                
-            case .stop(let channelId):
-                return [0x00, channelId]
-                
-            case .getBrickID:
-                return [0x0A]
-                
-            case .getWatchDog:
-                return [0x0E]
-                
-            }
-        }
-    }
-    
-    
     static let RemoteControlServiceUUID = "4dc591b0-857c-41de-b5f1-15abda665b0c"
     
     static let RemoteControlCommandsCharacteristicUUID = "02B8CBCC-0E25-4BDA-8790-A15F53E6010F"
@@ -65,6 +34,8 @@ public class SBrick: NSObject {
     private var watchDog: Timer?
     
     public weak var delegate: SBrickDelegate?
+    
+    fileprivate var commandsQueue = [SBrickCommandWrapper]()
     
     init?(peripheral:CBPeripheral, advertisementData: [String : Any]) {
         
@@ -105,13 +76,15 @@ public class SBrick: NSObject {
     }
     
     
-    public func send(command: SBrick.Command) {
-        self.send(command.command())
+    public func send(command: SBrickCommand, onComplete: SBrickCommandCompletion? = nil) {
+        self.send(wrapper: SBrickCommandWrapper(command: command, onComplete: onComplete))
     }
     
-    public func send(_ command:[UInt8]) {
+    private func send(wrapper: SBrickCommandWrapper) {
         
         guard let characteristic = self.remoteControlCommandsCharacteristic else { return }
+        
+        commandsQueue.append(wrapper)
         
         if watchDog == nil {
             watchDog = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { [weak self] (timer) in
@@ -119,7 +92,7 @@ public class SBrick: NSObject {
             })
         }
         
-        var rawArray = command
+        var rawArray = wrapper.command.writeBytes()
         let data = NSData(bytes: &rawArray, length: rawArray.count)
         peripheral.writeValue(data as Data, for: characteristic, type: .withResponse)
     }
@@ -211,16 +184,30 @@ extension SBrick: CBPeripheralDelegate {
         
 //        guard characteristic.uuid == CBUUID(string: SBrick.RemoteControlCommandsCharacteristicUUID) else { return }        
         
-        if let data = characteristic.value {
-            parse(bytes: [UInt8](data))
+        guard self.commandsQueue.count > 0 else { return }
+        let commandWrapper = self.commandsQueue.remove(at: 0)
+        
+        switch commandWrapper.command {
+        case .getWatchDog:
+            break
+            
+        default:
+            print("got value for: \(commandWrapper.command)")
         }
         
         DispatchQueue.main.async {
-            self.delegate?.sbrick(self, didRead: characteristic.value)
+        
+            if let data = characteristic.value {
+                self.parse(bytes: [UInt8](data), onComplete: commandWrapper.onComplete)
+            }
+            else if let onComplete = commandWrapper.onComplete {
+                onComplete([])
+            }
         }
+        
     }
     
-    private func parse(bytes: [UInt8]) {
+    private func parse(bytes: [UInt8], onComplete:SBrickCommandCompletion?) {
         
         var sectionFirstIndex: Int = 0
         var sectionLastIndex: Int = 0
@@ -235,7 +222,9 @@ extension SBrick: CBPeripheralDelegate {
                 sectionBytes.append(bytes[index])
                 
                 if index == sectionLastIndex {
-                    parse(record: sectionBytes)
+                    if let value = parse(record: sectionBytes) {
+                        onComplete?(value)
+                    }
                     sectionBytes = []
                     sectionFirstIndex = index + 1
                 }
@@ -243,9 +232,9 @@ extension SBrick: CBPeripheralDelegate {
         }
     }
     
-    private func parse(record sectionBytes: [UInt8]) {
+    private func parse(record sectionBytes: [UInt8]) -> [UInt8]? {
         
-        guard sectionBytes.count > 0 else { return }
+        guard sectionBytes.count > 0 else { return nil }
         
         let recordIdentifier = sectionBytes[0]
         var bytes = sectionBytes
@@ -258,7 +247,7 @@ extension SBrick: CBPeripheralDelegate {
         //04 Command response
         //  04 <1: return code > <n-2: return value >
         case 4:
-            guard bytes.count > 0 else { return }
+            guard bytes.count > 0 else { return nil }
             let returnCode = bytes[0]
             
             //00: Successful operation
@@ -271,13 +260,15 @@ extension SBrick: CBPeripheralDelegate {
             //08: Thermal protection is active
             //09: The system is in a state where the command does not make sense
             
+            bytes.remove(at: 0)
+            
             switch returnCode {
             case 0:
                 //print("Successful operation")
-                break
+                return bytes
                 
             default:
-                break
+                return nil
             }
             
             
@@ -287,19 +278,37 @@ extension SBrick: CBPeripheralDelegate {
             self.channelValues.removeAll()
             while bytes.count > 1 {
                 
-                let data = Data(bytes: Array(bytes[0...1]))
-                let value = UInt16(littleEndian: data.withUnsafeBytes { $0.pointee })
-//                print("ADC channel value: \(value) voltage: \(Double(value) * 0.83875 / 2047.0)")
-                
-                self.channelValues.append(value)
-                
+                self.channelValues.append(bytes.uint16littleEndianValue())
                 bytes.removeSubrange(0...1)
+                
+                return nil
             }
             
         default:
-            break
+            return nil
         }
         
+        
+        return nil
     }
     
+}
+
+public extension Array where Iterator.Element == UInt8 {
+    
+    func uint16littleEndianValue() -> UInt16 {
+        let data = Data(bytes: self)
+        return UInt16(littleEndian: data.withUnsafeBytes { $0.pointee })
+    }
+    
+    func voltageValue() -> Double {
+        return self.uint16littleEndianValue().voltageValue()
+    }
+}
+
+public extension UInt16 {
+    
+    func voltageValue() -> Double {
+        return Double(self) * 0.83875 / 2047.0
+    }
 }
