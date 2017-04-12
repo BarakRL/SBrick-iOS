@@ -53,29 +53,26 @@ class ViewController: UIViewController, SBrickManagerDelegate, SBrickDelegate {
         
         sbrick.send(command: .write(bytes: [0x2C,0x01]))
         
-        adcTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] (timer) in
+        adcTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { [weak self] (timer) in
             
             guard let _self = self else { return }
             guard let sbrick = _self.manager.sbricks.first else { return }
             
-//            sbrick.send(command: .queryADC(channelId: 0x00)) { (bytes) in
-//                print("ADC 00: \(bytes.uint16littleEndianValue())")
-//            }
             
             sbrick.send(command: .queryADC(channelId: 0x01)) { (bytes) in
                 
-//                let voltage = (bytes.voltageValue() - 1.4) / 1.4
-//                print("ADC: \(voltage)")
-                print("ADC 01: \(bytes.uint16littleEndianValue()/16)")
+                let adcValue = bytes.uint16littleEndianValue()/16
                 
-//                if voltage > 0.7 && !_self.isDriving {
-//                    _self.isDriving = true
-//                    sbrick.send(command: .drive(channelId: 0x02, cw: true, power: 255))
-//                }
-//                else if voltage < 0.7 && _self.isDriving {
-//                    _self.isDriving = false
-//                    sbrick.send(command: .stop(channelId: 0x02))
-//                }
+                print("ADC 01: \(adcValue)")
+                
+                if adcValue > 400 && !_self.isDriving {
+                    _self.isDriving = true
+                    sbrick.send(command: .drive(channelId: 0x02, cw: true, power: 255))
+                }
+                else if adcValue < 400 && _self.isDriving {
+                    _self.isDriving = false
+                    sbrick.send(command: .stop(channelId: 0x02))
+                }
             }
         })
     }
