@@ -49,47 +49,7 @@ class ViewController: UIViewController, SBrickManagerDelegate, SBrickDelegate {
     func sbrickDisconnected(_ sbrick: SBrick) {
         statusLabel.text = "SBrick disconnected :("
         self.sbrick = nil
-    }
-    
-    enum State {
-        case idle
-        case driving
-        case stopped
-        case reversing
-    }
-    
-    var didReverseCW = false
-    var state = State.idle {
-        
-        didSet {
-            
-            guard let sbrick = self.sbrick else { return }
-            
-            switch state {
-                
-            case .idle:
-                sbrick.send(command: .stop(channelId: 0x02))
-                sbrick.send(command: .stop(channelId: 0x03))
-                
-            case .driving:
-                self.didReverseCW = false
-                sbrick.send(command: .drive(channelId: 0x02, cw: false, power: 255))
-                
-            case .stopped:
-                sbrick.send(command: .stop(channelId: 0x02))
-                
-            case .reversing:
-                self.didReverseCW = !self.didReverseCW
-                sbrick.send(command: .stop(channelId: 0x02))
-                sbrick.send(command: .drive(channelId: 0x03, cw: didReverseCW, power: 255))
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                     sbrick.send(command: .drive(channelId: 0x02, cw: true, power: 255))
-                })
-                
-            }
-        }
-        
-    }
+    }    
     
     func sbrickReady(_ sbrick: SBrick) {
         
@@ -99,7 +59,7 @@ class ViewController: UIViewController, SBrickManagerDelegate, SBrickDelegate {
     func sbrick(_ sbrick: SBrick, didRead data: Data?) {
         
         guard let data = data else { return }
-        print("sbrick [\(sbrick.name)] did read: \([UInt8](data))")        
+        print("sbrick [\(sbrick.name)] did read: \([UInt8](data))")
     }
     
     @IBAction func stop(_ sender: Any) {
