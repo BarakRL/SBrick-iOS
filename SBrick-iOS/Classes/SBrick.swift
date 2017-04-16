@@ -17,7 +17,6 @@ public protocol SBrickDelegate: class {
 
 public class SBrick: NSObject {
     
-    public fileprivate(set) var channelValues:[UInt16]
     static let RemoteControlServiceUUID = "4dc591b0-857c-41de-b5f1-15abda665b0c"
     
     static let RemoteControlCommandsCharacteristicUUID = "02B8CBCC-0E25-4BDA-8790-A15F53E6010F"
@@ -45,8 +44,6 @@ public class SBrick: NSObject {
         self.name = advertisementData[CBAdvertisementDataLocalNameKey] as? String ?? "N/A"
         self.peripheral = peripheral
         self.manufacturerData = manufacturerData
-        
-        self.channelValues = []
         
         super.init()
     }
@@ -271,25 +268,9 @@ extension SBrick: CBPeripheralDelegate {
                 return nil
             }
             
-            
-        //06 Voltage measurement
-        //  06 < measurement data >
-        case 6:
-            self.channelValues.removeAll()
-            while bytes.count > 1 {
-                
-                self.channelValues.append(bytes.uint16littleEndianValue())
-                bytes.removeSubrange(0...1)
-                
-                return nil
-            }
-            
         default:
             return nil
-        }
-        
-        
-        return nil
+        }        
     }
     
 }
