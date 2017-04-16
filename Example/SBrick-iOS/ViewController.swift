@@ -9,6 +9,7 @@
 import UIKit
 import SBrick
 import CoreBluetooth
+import AVFoundation
 
 class ViewController: UIViewController, SBrickManagerDelegate, SBrickDelegate {
 
@@ -173,6 +174,33 @@ class ViewController: UIViewController, SBrickManagerDelegate, SBrickDelegate {
             print("ok")
         }
     }
+    
+    var accPower: UInt8 = 0
+    var accTimer: Timer?
+    
+    var player: AVAudioPlayer?
+    func playSound(name soundName: String, withExtension ext: String) {
+        guard let url = Bundle.main.url(forResource: soundName, withExtension: ext) else {
+            print("url not found")
+            return
+        }
+        
+        do {
+            /// this codes for making this app ready to takeover the device audio
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            player = try AVAudioPlayer(contentsOf: url)
+                        
+            player!.play()
+        } catch let error as NSError {
+            print("error: \(error.localizedDescription)")
+        }
+    }
+    
+    func stopSound() {
+        player?.stop()
+    }
 }
 
 extension ViewController {
@@ -223,15 +251,24 @@ extension ViewController {
                 sbrick.send(command: .stop(channelId: 2))
                 
             case .button2Pressed:
-                print("BUTTON 2 Pressed")
-                sbrick.send(command: .drive(channelId: 2, cw: false, power: 0x80))
+                print("BUTTON 2 pressed")
+                //sbrick.send(command: .drive(channelId: 2, cw: false, power: 0x80))
+                
+                accPower = 100
+                accTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true, block: { [unowned self] (timer) in
+                    if self.accPower < 0xFF {
+                        self.accPower = UInt8(min(Int(self.accPower) + 10, 0xFF))
+                        sbrick.send(command: .drive(channelId: 2, cw: false, power: self.accPower))
+                    }
+                })
                 
             case .button2Released:
                 print("BUTTON 2 released")
                 sbrick.send(command: .stop(channelId: 2))
+                accTimer?.invalidate()
                 
             case .button3Pressed:
-                print("BUTTON 3 Pressed")
+                print("BUTTON 3 pressed")
                 sbrick.send(command: .drive(channelId: 2, cw: true, power: 0xFF))
                 
             case .button3Released:
@@ -239,22 +276,34 @@ extension ViewController {
                 sbrick.send(command: .stop(channelId: 2))
                 
             case .button4Pressed:
-                print("BUTTON 4 Pressed")
-                sbrick.send(command: .drive(channelId: 2, cw: true, power: 0x80))
+                print("BUTTON 4 pressed")
+//                sbrick.send(command: .drive(channelId: 2, cw: true, power: 0x80))
+                accPower = 100
+                accTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true, block: { [unowned self] (timer) in
+                    if self.accPower < 0xFF {
+                        self.accPower = UInt8(min(Int(self.accPower) + 10, 0xFF))
+                        sbrick.send(command: .drive(channelId: 2, cw: true, power: self.accPower))
+                    }
+                })
                 
             case .button4Released:
                 print("BUTTON 4 released")
                 sbrick.send(command: .stop(channelId: 2))
+                accTimer?.invalidate()
                 
             case .button5Pressed:
-                print("BUTTON 5 Pressed")
+                print("BUTTON 5 pressed")
+                playSound(name: "horn", withExtension: "wav")
             case .button5Released:
                 print("BUTTON 5 released")
+                stopSound()
                 
             case .button6Pressed:
-                print("BUTTON 6 Pressed")
+                print("BUTTON 6 pressed")
+                playSound(name: "engine", withExtension: "mp3")
             case .button6Released:
                 print("BUTTON 6 released")
+                stopSound()
                 
             case .startPressed:
                 print("START pressed")

@@ -13,6 +13,8 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		B8A9605B31B27A460D5673A3 /* Pods_SBrick_iOS_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB26E8B29CE33FB2D06FD4AB /* Pods_SBrick_iOS_Example.framework */; };
+		E518BE2A1EA326A900EB0DF3 /* engine.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E518BE291EA326A900EB0DF3 /* engine.mp3 */; };
+		E518BE2E1EA32B1D00EB0DF3 /* horn.wav in Resources */ = {isa = PBXBuildFile; fileRef = E518BE2D1EA32B1D00EB0DF3 /* horn.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		B17F76181781AB5D50032576 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		B9139363F4FC492834EFAE8E /* Pods-SBrick-iOS_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SBrick-iOS_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SBrick-iOS_Tests/Pods-SBrick-iOS_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DB26E8B29CE33FB2D06FD4AB /* Pods_SBrick_iOS_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SBrick_iOS_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E518BE291EA326A900EB0DF3 /* engine.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = engine.mp3; sourceTree = "<group>"; };
+		E518BE2D1EA32B1D00EB0DF3 /* horn.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = horn.wav; sourceTree = "<group>"; };
 		F71B4E5F644FEC1ED070A4A5 /* Pods_SBrick_iOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SBrick_iOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F780AC25A127F303F99EAD04 /* Pods-SBrick-iOS_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SBrick-iOS_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-SBrick-iOS_Example/Pods-SBrick-iOS_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,6 +75,8 @@
 		607FACD21AFB9204008FA782 /* Example for SBrick-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				E518BE2D1EA32B1D00EB0DF3 /* horn.wav */,
+				E518BE291EA326A900EB0DF3 /* engine.mp3 */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -200,8 +206,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E518BE2E1EA32B1D00EB0DF3 /* horn.wav in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				E518BE2A1EA326A900EB0DF3 /* engine.mp3 in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
