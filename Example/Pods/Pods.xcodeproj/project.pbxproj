@@ -14,6 +14,7 @@
 		7C6D770401BAB64FD1C552DC5DE6A452 /* SBrick-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1731AA5AFE29C4A44729705D509FFB17 /* SBrick-iOS-dummy.m */; };
 		BA154F37C8D6249B642D8A97929C6B49 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EA00AEA27063E54337CB3252DEA73FF /* CoreBluetooth.framework */; };
 		BBBC65C12E26D073DBB5ED692B3D5282 /* SBrickManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81ABFDD576863EEBDF00A592445B05D /* SBrickManager.swift */; };
+		E518BE281EA2FFAD00EB0DF3 /* iCade.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518BE271EA2FFAD00EB0DF3 /* iCade.swift */; };
 		E51D30971E9D7A3A003A41ED /* SBrickCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51D30951E9D7902003A41ED /* SBrickCommand.swift */; };
 		EAAD348726E3272CEB475F0A3A3C13EA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93972F6957789C9E8A0EFA25275C82D1 /* Foundation.framework */; };
 		EAD88ABD73E0F292B6C5E56F80C34DB9 /* SBrick-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AC06EF0F7938E73CF6D41FAA8CBDF3E9 /* SBrick-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -54,6 +55,7 @@
 		BC85EA2ED1127654421949C8E3996885 /* Pods-SBrick-iOS_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SBrick-iOS_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		C690680489DC038FCF67F0DAD2476956 /* Pods-SBrick-iOS_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SBrick-iOS_Example-dummy.m"; sourceTree = "<group>"; };
 		C81ABFDD576863EEBDF00A592445B05D /* SBrickManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SBrickManager.swift; sourceTree = "<group>"; };
+		E518BE271EA2FFAD00EB0DF3 /* iCade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iCade.swift; sourceTree = "<group>"; };
 		E51D30951E9D7902003A41ED /* SBrickCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBrickCommand.swift; sourceTree = "<group>"; };
 		E833B2A39542CBD41401138AFB75658B /* Pods-SBrick-iOS_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SBrick-iOS_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -177,6 +179,7 @@
 		B44E61857E0730D2B6249E6C376691A5 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E518BE271EA2FFAD00EB0DF3 /* iCade.swift */,
 				60194432EEE0B8F277D994005D284DA4 /* ManufacturerData.swift */,
 				32A22DD825A113A80C28CEE460F3960A /* SBrick.swift */,
 				C81ABFDD576863EEBDF00A592445B05D /* SBrickManager.swift */,
@@ -289,6 +292,7 @@
 			files = (
 				E51D30971E9D7A3A003A41ED /* SBrickCommand.swift in Sources */,
 				57D238BAACA6ACE17372FF2A56CEE7ED /* ManufacturerData.swift in Sources */,
+				E518BE281EA2FFAD00EB0DF3 /* iCade.swift in Sources */,
 				7C6D770401BAB64FD1C552DC5DE6A452 /* SBrick-iOS-dummy.m in Sources */,
 				333A8994D401D16AACB5B3573EC733E8 /* SBrick.swift in Sources */,
 				BBBC65C12E26D073DBB5ED692B3D5282 /* SBrickManager.swift in Sources */,

@@ -14,6 +14,7 @@ class ViewController: UIViewController, SBrickManagerDelegate, SBrickDelegate {
 
     @IBOutlet weak var statusLabel: UILabel!
     var manager: SBrickManager!
+    var sbrick: SBrick?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,15 +42,64 @@ class ViewController: UIViewController, SBrickManagerDelegate, SBrickDelegate {
     
     func sbrickConnected(_ sbrick: SBrick) {
         statusLabel.text = "SBrick connected!"
+        self.sbrick = sbrick
     }
     
     func sbrickDisconnected(_ sbrick: SBrick) {
         statusLabel.text = "SBrick disconnected :("
+        self.sbrick = nil
+    }
+    
+    enum State {
+        case idle
+        case driving
+        case stopped
+        case reversing
+    }
+    
+    var didReverseCW = false
+    var state = State.idle {
+        
+        didSet {
+            
+            guard let sbrick = self.sbrick else { return }
+            
+            switch state {
+                
+            case .idle:
+                sbrick.send(command: .stop(channelId: 0x02))
+                sbrick.send(command: .stop(channelId: 0x03))
+                
+            case .driving:
+                self.didReverseCW = false
+                sbrick.send(command: .drive(channelId: 0x02, cw: false, power: 255))
+                
+            case .stopped:
+                sbrick.send(command: .stop(channelId: 0x02))
+                
+            case .reversing:
+                self.didReverseCW = !self.didReverseCW
+                sbrick.send(command: .stop(channelId: 0x02))
+                sbrick.send(command: .drive(channelId: 0x03, cw: didReverseCW, power: 255))
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                     sbrick.send(command: .drive(channelId: 0x02, cw: true, power: 255))
+                })
+                
+            }
+        }
+        
     }
     
     func sbrickReady(_ sbrick: SBrick) {
         
         statusLabel.text = "SBrick ready!"
+    }
+    
+    
+    var adcTimer: Timer?
+    func startAutodrive() {
+        
+        guard let sbrick = self.sbrick else { return }
         
         sbrick.send(command: .write(bytes: [0x2C,0x01]))
         
@@ -65,21 +115,20 @@ class ViewController: UIViewController, SBrickManagerDelegate, SBrickDelegate {
                 
                 print("ADC 01: \(adcValue)")
                 
-                if adcValue > 400 && !_self.isDriving {
-                    _self.isDriving = true
-                    sbrick.send(command: .drive(channelId: 0x02, cw: true, power: 255))
+                if adcValue > 250 && _self.state == .idle {
+                    _self.state = .driving
+                    
                 }
-                else if adcValue < 400 && _self.isDriving {
-                    _self.isDriving = false
-                    sbrick.send(command: .stop(channelId: 0x02))
+                else if adcValue < 250 && _self.state != .reversing {
+                    _self.state = .reversing
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                        _self.state = .idle
+                    })
                 }
             }
         })
     }
-    
-    var isDriving = false
-    
-    var adcTimer: Timer?
     
     func sbrick(_ sbrick: SBrick, didRead data: Data?) {
         
@@ -122,6 +171,112 @@ class ViewController: UIViewController, SBrickManagerDelegate, SBrickDelegate {
         guard let sbrick = manager.sbricks.first else { return }
         sbrick.send(command: .drive(channelId: 0, cw: false, power: 0xFF)) { bytes in
             print("ok")
+        }
+    }
+}
+
+extension ViewController {
+    
+    open override var keyCommands: [UIKeyCommand]? {
+        return iCade.keyCommands(action: #selector(keyPress(sender:)))
+    }
+    
+    func keyPress(sender: UIKeyCommand) {
+        
+        guard let sbrick = self.sbrick else { return }
+        
+        if let key = iCadeButtons(rawValue: sender.input) {
+            
+            switch key {
+            case .upPressed:
+                print("UP pressed")
+            case .upReleased:
+                print("UP released")
+                
+            case .downPressed:
+                print("DOWN pressed")
+            case .downReleased:
+                print("DOWN released")
+                
+            case .leftPressed:
+                print("LEFT pressed")
+                sbrick.send(command: .drive(channelId: 3, cw: true, power: 255))
+                
+            case .leftReleased:
+                print("LEFT released")
+                sbrick.send(command: .stop(channelId: 3))
+                
+            case .rightPressed:
+                print("RIGHT pressed")
+                sbrick.send(command: .drive(channelId: 3, cw: false, power: 255))
+                
+            case .rightReleased:
+                print("RIGHT released")
+                sbrick.send(command: .stop(channelId: 3))
+                
+            case .button1Pressed:
+                print("BUTTON 1 pressed")
+                sbrick.send(command: .drive(channelId: 2, cw: false, power: 0xFF))
+                
+            case .button1Released:
+                print("BUTTON 1 released")
+                sbrick.send(command: .stop(channelId: 2))
+                
+            case .button2Pressed:
+                print("BUTTON 2 Pressed")
+                sbrick.send(command: .drive(channelId: 2, cw: false, power: 0x80))
+                
+            case .button2Released:
+                print("BUTTON 2 released")
+                sbrick.send(command: .stop(channelId: 2))
+                
+            case .button3Pressed:
+                print("BUTTON 3 Pressed")
+                sbrick.send(command: .drive(channelId: 2, cw: true, power: 0xFF))
+                
+            case .button3Released:
+                print("BUTTON 3 released")
+                sbrick.send(command: .stop(channelId: 2))
+                
+            case .button4Pressed:
+                print("BUTTON 4 Pressed")
+                sbrick.send(command: .drive(channelId: 2, cw: true, power: 0x80))
+                
+            case .button4Released:
+                print("BUTTON 4 released")
+                sbrick.send(command: .stop(channelId: 2))
+                
+            case .button5Pressed:
+                print("BUTTON 5 Pressed")
+            case .button5Released:
+                print("BUTTON 5 released")
+                
+            case .button6Pressed:
+                print("BUTTON 6 Pressed")
+            case .button6Released:
+                print("BUTTON 6 released")
+                
+            case .startPressed:
+                print("START pressed")
+                
+                if adcTimer == nil {
+                    startAutodrive()
+                }
+                else {
+                    adcTimer?.invalidate()
+                    adcTimer = nil
+                    sbrick.send(command: .stop(channelId: 2))
+                }
+                
+                
+            case .startReleased:
+                print("START released")
+                
+            case .selectPressed:
+                print("SELECT pressed")
+            case .selectReleased:
+                print("SELECT released")
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 //
 //  SBrick.swift
-//  SBrickTest
+//  SBrick-iOS
 //
 //  Created by Barak Harel on 4/3/17.
 //  Copyright © 2017 Barak Harel. All rights reserved.
