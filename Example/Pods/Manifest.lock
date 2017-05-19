@@ -1,5 +1,5 @@
 PODS:
-  - SBrick-iOS (0.1.0)
+  - SBrick-iOS (0.2.0)
 
 DEPENDENCIES:
   - SBrick-iOS (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  SBrick-iOS: 28bc94c10f5448a8e1edb746312f35ec856d6f60
+  SBrick-iOS: a9dfe553503f19f03c43ab7478453044c68e5db4
 
 PODFILE CHECKSUM: 94a6de7e3251e7ee4ff0c6ce6d066081ac7d00b0
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.2.1
