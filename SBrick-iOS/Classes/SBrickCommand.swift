@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum SBrickCommand {
+public enum SBrickCommand: Equatable {
     
     case drive(channelId: UInt8, cw: Bool, power: UInt8)
     case stop(channelId: UInt8)
@@ -42,6 +42,22 @@ public enum SBrickCommand {
             
         }
     }
+    
+    public static func ==(lhs: SBrickCommand, rhs: SBrickCommand) -> Bool {
+        
+        switch (lhs, rhs) {
+        case (let .drive(channel1, cw1, power1), let .drive(channel2, cw2, power2)):
+            return channel1 == channel2 && cw1 == cw2 && power1 == power2
+        
+        case (let .stop(channel1), let .stop(channel2)):
+            return channel1 == channel2
+            
+        default:
+            return false
+        }
+        
+    }
+    
 }
 
 public typealias SBrickCommandCompletion = (([UInt8])->Void)

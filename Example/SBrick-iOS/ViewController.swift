@@ -64,35 +64,50 @@ class ViewController: UIViewController, SBrickManagerDelegate, SBrickDelegate {
     
     @IBAction func stop(_ sender: Any) {
         guard let sbrick = manager.sbricks.first else { return }
-        sbrick.send(command: .stop(channelId: 0))
+        
+        //sbrick.send(command: .stop(channelId: 0))
+        
+        sbrick.channels[0].stop()
     }
     
     @IBAction func halfPowerCW(_ sender: Any) {
         guard let sbrick = manager.sbricks.first else { return }
-        sbrick.send(command: .drive(channelId: 0, cw: true, power: 0x80)) { bytes in
-            print("ok")
-        }
+        
+        //sbrick.send(command: .drive(channelId: 0, cw: true, power: 0x80)) { bytes in
+        //    print("ok")
+        //}
+        
+        sbrick.channels[0].drive(power: 0x80, isCW: true)
     }
     
     @IBAction func fullPowerCW(_ sender: Any) {
         guard let sbrick = manager.sbricks.first else { return }
-        sbrick.send(command: .drive(channelId: 0, cw: true, power: 0xFF)) { bytes in
-            print("ok")
-        }
+        
+        //sbrick.send(command: .drive(channelId: 0, cw: true, power: 0xFF)) { bytes in
+        //    print("ok")
+        //}
+        
+        sbrick.channels[0].drive(power: 0xFF, isCW: true)
     }
     
     @IBAction func halfPowerCCW(_ sender: Any) {
         guard let sbrick = manager.sbricks.first else { return }
-        sbrick.send(command: .drive(channelId: 0, cw: false, power: 0x80)) { bytes in
-            print("ok")
-        }
+        
+        //sbrick.send(command: .drive(channelId: 0, cw: false, power: 0x80)) { bytes in
+        //    print("ok")
+        //}
+        
+        sbrick.channels[0].drive(power: 0x80, isCW: false)
     }
     
     @IBAction func fullPowerCCW(_ sender: Any) {
         guard let sbrick = manager.sbricks.first else { return }
-        sbrick.send(command: .drive(channelId: 0, cw: false, power: 0xFF)) { bytes in
-            print("ok")
-        }
+        
+        //sbrick.send(command: .drive(channelId: 0, cw: false, power: 0xFF)) { bytes in
+        //    print("ok")
+        //}
+        
+        sbrick.channels[0].drive(power: 0xFF, isCW: false)
     }
 }
 

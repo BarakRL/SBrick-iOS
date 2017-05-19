@@ -36,6 +36,8 @@ public class SBrick: NSObject {
     
     fileprivate var commandsQueue = [SBrickCommandWrapper]()
     
+    public private(set) var channels = [SBrickChannel]()
+    
     init?(peripheral:CBPeripheral, advertisementData: [String : Any]) {
         
         guard let data = advertisementData["kCBAdvDataManufacturerData"] as? Data else { return nil }
@@ -46,7 +48,47 @@ public class SBrick: NSObject {
         self.manufacturerData = manufacturerData
         
         super.init()
+                
+        for channelID: UInt8 in 0...3 {
+            
+            let channel = SBrickChannel(channelID: channelID)
+            channels.append(channel)
+        }
+        
+        self.updateChannelSampleTimer()
     }
+    
+    
+    private var channelsSampleTimer: Timer?
+    public var channelsSampleInterval: TimeInterval = 0.05 {
+        didSet {
+            
+            //protect
+            if channelsSampleInterval <= 0 {
+                channelsSampleInterval = 0.1
+            }
+            
+            self.updateChannelSampleTimer()
+        }
+    }
+    
+    private func updateChannelSampleTimer() {
+        
+        channelsSampleTimer?.invalidate()
+        channelsSampleTimer = Timer.scheduledTimer(withTimeInterval: self.channelsSampleInterval, repeats: true, block: { [weak self] (timer) in
+            
+            guard let _self = self else { return }
+            for channel in _self.channels {
+                
+                if channel.commandDidChange {
+                    channel.commandDidChange = false
+                    _self.send(command: channel.command)
+                }
+            }
+            
+        })
+    }
+    
     
     static func ==(lhs: SBrick, rhs: SBrick) -> Bool {
         return lhs.peripheral.isEqual(rhs.peripheral)
