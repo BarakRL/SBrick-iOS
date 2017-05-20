@@ -34,7 +34,9 @@ public class SBrickChannel {
             self.commandDidChange = true
         }
         
-        self.command = .stop(channelId: channelID)
+        if commandDidChange {
+            self.command = .stop(channelId: channelID)
+        }
     }
     
     public func drive(power: UInt8, isCW: Bool) {
@@ -52,7 +54,8 @@ public class SBrickChannel {
             self.commandDidChange = true
         }
         
-        
-        self.command = .drive(channelId: channelID, cw: isCW, power: power)
+        if commandDidChange {
+            self.command = .drive(channelId: channelID, cw: isCW, power: power)
+        }
     }
 }
