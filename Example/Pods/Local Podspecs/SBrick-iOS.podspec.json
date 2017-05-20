@@ -1,6 +1,6 @@
 {
   "name": "SBrick-iOS",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "summary": "SBrick support for Swift",
   "description": "Connect and control SBrick using Swift",
   "homepage": "https://github.com/BarakRL/SBrick-iOS",
@@ -14,7 +14,7 @@
   },
   "source": {
     "git": "https://github.com/BarakRL/SBrick-iOS.git",
-    "tag": "0.2.0"
+    "tag": "0.2.1"
   },
   "source_files": [
     "Classes",
