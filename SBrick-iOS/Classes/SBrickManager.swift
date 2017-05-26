@@ -170,8 +170,7 @@ extension SBrickManager: CBCentralManagerDelegate {
         
         for sbrick in sbricks {
             if sbrick.peripheral == peripheral {
-                sbrick.didDisconnect()
-                sbricks.remove(object: sbrick)
+                sbrick.didDisconnect()                
             }
         }
         
