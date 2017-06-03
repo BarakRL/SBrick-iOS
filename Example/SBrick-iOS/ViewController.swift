@@ -46,6 +46,32 @@ class ViewController: UIViewController, SBrickManagerDelegate, SBrickDelegate {
         self.sbrick = sbrick
     }
     
+    var adcTimer: Timer?
+    func testSensor() {
+        
+        guard let sbrick = self.sbrick else { return }
+        sbrick.send(command: .write(bytes: [0x2C,0x03])) { (bytes) in
+            
+            print(bytes)
+            
+        }
+        
+        adcTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { [weak self] (timer) in
+            
+            guard let sbrick = self?.sbrick else { return }
+            
+            sbrick.send(command: .queryADC(channelId: 0x03)) { (bytes) in
+                
+  
+                let channel = bytes[0] & 0xF
+                let value = bytes[1] * 0x10 + bytes[0] >> 4
+//                let adcValue = bytes.uint16littleEndianValue()
+
+                print("channel: \(channel) value:\(value)")
+            }
+        })
+    }
+    
     func sbrickDisconnected(_ sbrick: SBrick) {
         statusLabel.text = "SBrick disconnected :("
         self.sbrick = nil
@@ -54,6 +80,7 @@ class ViewController: UIViewController, SBrickManagerDelegate, SBrickDelegate {
     func sbrickReady(_ sbrick: SBrick) {
         
         statusLabel.text = "SBrick ready!"
+        testSensor()
     }
     
     func sbrick(_ sbrick: SBrick, didRead data: Data?) {
