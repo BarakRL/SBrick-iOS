@@ -13,8 +13,9 @@ s.homepage     = "https://github.com/BarakRL/SBrick-iOS"
 s.license      = { :type => "MIT", :file => "LICENSE" }
 
 s.author    = "Barak Harel"
-s.platform     = :ios, "10.0"
-s.platform     = :watchos, "4.0"
+
+s.ios.deployment_target  = '10.0'
+s.watchos.deployment_target  = '4.0'
 
 s.source       = { :git => "https://github.com/BarakRL/SBrick-iOS.git", :tag => "#{s.version}" }
 s.source_files  = "Classes", "SBrick-iOS/Classes/**/*.{swift}"
