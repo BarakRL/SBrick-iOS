@@ -101,7 +101,7 @@ public class ManufacturerData {
             
             self.deviceIdentifier = ""
             for byte in bytes {
-                if deviceIdentifier.characters.count > 0 {
+                if deviceIdentifier.count > 0 {
                     self.deviceIdentifier += ":"
                 }
                 self.deviceIdentifier += String(format:"%2X", byte)
