@@ -58,7 +58,6 @@ public class SBrick: NSObject {
         self.updatePortsSampleTimer()
     }
     
-    
     private var portsSampleTimer: Timer?
     public var portsSampleInterval: TimeInterval = 0.05 {
         didSet {
@@ -89,6 +88,14 @@ public class SBrick: NSObject {
         })
     }
     
+    public func managedPort(for port: SBrickPort) -> SBrickManagedPort {
+        switch port {
+        case .port1: return self.port1
+        case .port2: return self.port2
+        case .port3: return self.port3
+        case .port4: return self.port4
+        }
+    }
     
     static func ==(lhs: SBrick, rhs: SBrick) -> Bool {
         return lhs.peripheral.isEqual(rhs.peripheral)

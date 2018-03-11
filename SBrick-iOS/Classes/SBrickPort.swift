@@ -8,12 +8,12 @@
 
 import Foundation
 
-public enum SBrickPort {
+public enum SBrickPort: Int, Codable {
     
-    case port1
-    case port2
-    case port3
-    case port4
+    case port1 = 1
+    case port2 = 2
+    case port3 = 3
+    case port4 = 4
     
     var writeChannel: UInt8 {
         
