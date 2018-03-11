@@ -8,24 +8,7 @@
 
 import Foundation
 
-public enum SBrickPort {
-    
-    case port1
-    case port2
-    case port3
-    case port4
-    
-    var channels: [UInt8] {
-        
-        switch self {
-        case .port1: return [0x00,0x01]
-        case .port2: return [0x02,0x03]
-        case .port3: return [0x04,0x05]
-        case .port4: return [0x06,0x07]
-        }
-        
-    }
-}
+
 
 public enum SBrickCommand: Equatable {
     
@@ -62,14 +45,10 @@ public enum SBrickCommand: Equatable {
             return bytes
             
         case .enableSensor(let port):
-            var bytes:[UInt8] = [0x2C, 0x08]
-            bytes.append(contentsOf: port.channels)
-            return bytes
+            return [0x2C, 0x08, port.readChannelA, port.readChannelB]
             
         case .querySensor(let port):
-            var bytes:[UInt8] = [0x0F, 0x08]
-            bytes.append(contentsOf: port.channels)
-            return bytes            
+            return [0x0F, 0x08, port.readChannelA, port.readChannelB]
         }
     }
     
