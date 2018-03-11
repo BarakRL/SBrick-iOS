@@ -14,6 +14,11 @@ import AVFoundation
 class ViewController: UIViewController, SBrickManagerDelegate, SBrickDelegate {
 
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var sensorTypeLabel: UILabel!
+    @IBOutlet weak var sensorValueLabel: UILabel!
+
+    
+    
     var manager: SBrickManager!
     var sbrick: SBrick?
     
@@ -50,15 +55,19 @@ class ViewController: UIViewController, SBrickManagerDelegate, SBrickDelegate {
     func testSensor() {
         
         guard let sbrick = self.sbrick else { return }
-        sbrick.send(command: .enableSensor(port: .port3))
+        sbrick.send(command: .enableSensor(port: .port2))
         
-        adcTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { [weak self] (timer) in
+        adcTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true, block: { [weak self] (timer) in
             
             guard let sbrick = self?.sbrick else { return }
                         
-            sbrick.send(command: .querySensor(port: .port3)) { (bytes) in
+            sbrick.send(command: .querySensor(port: .port2)) { [weak self] (bytes) in
                 
                 if let sensorData = SBrickSensorData(bytes: bytes) {
+                    
+                    self?.sensorTypeLabel.text = "\(sensorData.sensorType)"
+                    self?.sensorValueLabel.text = "\(sensorData.sensorValue)"
+                    
                     print("sensor type: \(sensorData.sensorType) value:\(sensorData.sensorValue)")
                 }
             }

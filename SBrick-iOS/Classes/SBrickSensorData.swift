@@ -46,11 +46,12 @@ public class SBrickSensorData {
         
         //guess sensor type, see:
         //https://social.sbrick.com/forums/topic/511/wedo-sensor-raw-value-voltage-questions/view/post_id/5149
+        //please note that this is not accurate and affected by voltage fluctuations
         
-        if typeValue > 0.15 && typeValue < 0.25 {
+        if typeValue > 0.1 && typeValue < 0.3 {
             self.sensorType = .tilt
         }
-        else if typeValue > 0.35 && typeValue < 0.45 {
+        else if typeValue > 0.3 && typeValue < 0.6 {
             self.sensorType = .motion
         }
         else {
