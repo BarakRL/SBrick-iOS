@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -50,11 +49,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KYc-EU-Wgq">
-                                <rect key="frame" x="48" y="313" width="40" height="40"/>
+                                <rect key="frame" x="44" y="313" width="44" height="40"/>
                                 <color key="backgroundColor" name="selectedMenuItemColor" catalog="System" colorSpace="catalog"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="8xn-Bm-Yt8"/>
-                                    <constraint firstAttribute="width" constant="40" id="zzX-fA-Ig0"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="zzX-fA-Ig0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -77,11 +76,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b7N-eh-UMU">
-                                <rect key="frame" x="288" y="313" width="40" height="40"/>
+                                <rect key="frame" x="288" y="313" width="44" height="40"/>
                                 <color key="backgroundColor" name="selectedMenuItemColor" catalog="System" colorSpace="catalog"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="X1b-4t-TGQ"/>
-                                    <constraint firstAttribute="width" constant="40" id="tXc-5p-tbW"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="tXc-5p-tbW"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="▶︎▶︎"/>
@@ -90,8 +89,32 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvC-Eb-E3R">
-                                <rect key="frame" x="46" y="252" width="283" height="21"/>
+                                <rect key="frame" x="44" y="244" width="288" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(type)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fj8-h9-YdP">
+                                <rect key="frame" x="44" y="401" width="288" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Port 2 Sensor:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJK-Sg-dEH">
+                                <rect key="frame" x="44" y="383" width="288" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(value)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfL-uW-Oyq">
+                                <rect key="frame" x="44" y="418" width="288" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drive Port 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bxg-E2-yE7">
+                                <rect key="frame" x="44" y="285" width="288" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -100,20 +123,34 @@
                         <constraints>
                             <constraint firstItem="b7N-eh-UMU" firstAttribute="top" secondItem="tzn-d8-Mho" secondAttribute="top" id="0MR-Ia-6aO"/>
                             <constraint firstItem="tzn-d8-Mho" firstAttribute="leading" secondItem="edW-tw-B9S" secondAttribute="trailing" constant="20" id="3uO-aQ-HY7"/>
+                            <constraint firstItem="tJK-Sg-dEH" firstAttribute="leading" secondItem="KYc-EU-Wgq" secondAttribute="leading" id="4x4-E6-Jmb"/>
+                            <constraint firstItem="wfL-uW-Oyq" firstAttribute="trailing" secondItem="fj8-h9-YdP" secondAttribute="trailing" id="5GD-WV-6EZ"/>
+                            <constraint firstItem="wfL-uW-Oyq" firstAttribute="leading" secondItem="fj8-h9-YdP" secondAttribute="leading" id="BYT-l1-gn0"/>
+                            <constraint firstItem="Bxg-E2-yE7" firstAttribute="top" secondItem="yvC-Eb-E3R" secondAttribute="bottom" constant="20" id="Bjo-hs-Vr0"/>
                             <constraint firstItem="tzn-d8-Mho" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="Byy-R6-evG"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="yvC-Eb-E3R" secondAttribute="trailing" constant="30" id="Inj-44-Bca"/>
+                            <constraint firstItem="tJK-Sg-dEH" firstAttribute="top" secondItem="KYc-EU-Wgq" secondAttribute="bottom" constant="30" id="H2m-S0-DdH"/>
+                            <constraint firstItem="yvC-Eb-E3R" firstAttribute="trailing" secondItem="b7N-eh-UMU" secondAttribute="trailing" id="IpE-kK-gfB"/>
+                            <constraint firstItem="Bxg-E2-yE7" firstAttribute="leading" secondItem="KYc-EU-Wgq" secondAttribute="leading" id="Ji5-Pi-KiV"/>
                             <constraint firstItem="b7N-eh-UMU" firstAttribute="leading" secondItem="HcH-Mi-a7D" secondAttribute="trailing" constant="20" id="KRd-8Y-L7o"/>
-                            <constraint firstItem="yvC-Eb-E3R" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="30" id="MRm-NL-VSN"/>
+                            <constraint firstItem="fj8-h9-YdP" firstAttribute="leading" secondItem="tJK-Sg-dEH" secondAttribute="leading" id="MsK-KR-SR3"/>
                             <constraint firstItem="KYc-EU-Wgq" firstAttribute="top" secondItem="tzn-d8-Mho" secondAttribute="top" id="N6z-hZ-DJn"/>
+                            <constraint firstItem="yvC-Eb-E3R" firstAttribute="leading" secondItem="KYc-EU-Wgq" secondAttribute="leading" id="QB0-qF-EBE"/>
                             <constraint firstItem="HcH-Mi-a7D" firstAttribute="leading" secondItem="tzn-d8-Mho" secondAttribute="trailing" constant="20" id="VuJ-2f-wrP"/>
+                            <constraint firstItem="wfL-uW-Oyq" firstAttribute="top" secondItem="fj8-h9-YdP" secondAttribute="bottom" id="ZKI-eN-vvY"/>
+                            <constraint firstItem="tzn-d8-Mho" firstAttribute="top" secondItem="Bxg-E2-yE7" secondAttribute="bottom" constant="10" id="c0i-CD-xes"/>
                             <constraint firstItem="tzn-d8-Mho" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="gAz-ox-hOm"/>
                             <constraint firstItem="edW-tw-B9S" firstAttribute="top" secondItem="tzn-d8-Mho" secondAttribute="top" id="i4c-Y7-4qe"/>
-                            <constraint firstItem="tzn-d8-Mho" firstAttribute="top" secondItem="yvC-Eb-E3R" secondAttribute="bottom" constant="40" id="iQ3-rD-Tss"/>
+                            <constraint firstItem="fj8-h9-YdP" firstAttribute="trailing" secondItem="tJK-Sg-dEH" secondAttribute="trailing" id="i4t-M9-hiY"/>
+                            <constraint firstItem="fj8-h9-YdP" firstAttribute="top" secondItem="tJK-Sg-dEH" secondAttribute="bottom" id="jFX-cS-DN7"/>
+                            <constraint firstItem="tJK-Sg-dEH" firstAttribute="trailing" secondItem="b7N-eh-UMU" secondAttribute="trailing" id="n7s-hd-6Rh"/>
                             <constraint firstItem="HcH-Mi-a7D" firstAttribute="top" secondItem="tzn-d8-Mho" secondAttribute="top" id="p9X-jQ-nPP"/>
                             <constraint firstItem="edW-tw-B9S" firstAttribute="leading" secondItem="KYc-EU-Wgq" secondAttribute="trailing" constant="20" id="ssG-IH-0xy"/>
+                            <constraint firstItem="Bxg-E2-yE7" firstAttribute="trailing" secondItem="b7N-eh-UMU" secondAttribute="trailing" id="uZi-XS-dmK"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="sensorTypeLabel" destination="fj8-h9-YdP" id="gRm-Ty-Lwg"/>
+                        <outlet property="sensorValueLabel" destination="wfL-uW-Oyq" id="Y9Z-R2-vWm"/>
                         <outlet property="statusLabel" destination="yvC-Eb-E3R" id="Wg7-xj-l2j"/>
                     </connections>
                 </viewController>

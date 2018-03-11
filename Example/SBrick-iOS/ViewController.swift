@@ -14,6 +14,11 @@ import AVFoundation
 class ViewController: UIViewController, SBrickManagerDelegate, SBrickDelegate {
 
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var sensorTypeLabel: UILabel!
+    @IBOutlet weak var sensorValueLabel: UILabel!
+
+    
+    
     var manager: SBrickManager!
     var sbrick: SBrick?
     
@@ -46,6 +51,29 @@ class ViewController: UIViewController, SBrickManagerDelegate, SBrickDelegate {
         self.sbrick = sbrick
     }
     
+    var adcTimer: Timer?
+    func testSensor() {
+        
+        guard let sbrick = self.sbrick else { return }
+        sbrick.send(command: .enableSensor(port: .port2))
+        
+        adcTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true, block: { [weak self] (timer) in
+            
+            guard let sbrick = self?.sbrick else { return }
+                        
+            sbrick.send(command: .querySensor(port: .port2)) { [weak self] (bytes) in
+                
+                if let sensorData = SBrickSensorData(bytes: bytes) {
+                    
+                    self?.sensorTypeLabel.text = "\(sensorData.sensorType)"
+                    self?.sensorValueLabel.text = "\(sensorData.sensorValue)"
+                    
+                    print("sensor type: \(sensorData.sensorType) value:\(sensorData.sensorValue)")
+                }
+            }
+        })
+    }
+    
     func sbrickDisconnected(_ sbrick: SBrick) {
         statusLabel.text = "SBrick disconnected :("
         self.sbrick = nil
@@ -54,6 +82,7 @@ class ViewController: UIViewController, SBrickManagerDelegate, SBrickDelegate {
     func sbrickReady(_ sbrick: SBrick) {
         
         statusLabel.text = "SBrick ready!"
+        testSensor()
     }
     
     func sbrick(_ sbrick: SBrick, didRead data: Data?) {
