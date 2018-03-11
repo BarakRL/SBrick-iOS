@@ -1,5 +1,5 @@
 //
-//  SBrickChannel.swift
+//  SBrickPort.swift
 //  Pods
 //
 //  Created by Barak Harel on 5/19/17.
@@ -8,18 +8,56 @@
 
 import Foundation
 
-public class SBrickChannel {
+public enum SBrickPort {
+    
+    case port1
+    case port2
+    case port3
+    case port4
+    
+    var writeChannel: UInt8 {
+        
+        switch self {
+        case .port1: return 0x00
+        case .port2: return 0x01
+        case .port3: return 0x02
+        case .port4: return 0x03
+        }
+    }
+    
+    var readChannelA: UInt8 {
+        
+        switch self {
+        case .port1: return 0x00
+        case .port2: return 0x02
+        case .port3: return 0x04
+        case .port4: return 0x06
+        }
+    }
+    
+    var readChannelB: UInt8 {
+        
+        switch self {
+        case .port1: return 0x01
+        case .port2: return 0x03
+        case .port3: return 0x05
+        case .port4: return 0x07
+        }
+    }
+}
+
+public class SBrickManagedPort {
     
     public var drivePowerThreshold: UInt8 = 8
     
-    public let channelID: UInt8
+    public let port: SBrickPort
     public private(set) var command: SBrickCommand
     
     internal var commandDidChange: Bool = false
     
-    init(channelID: UInt8) {
-        self.channelID = channelID
-        self.command = .stop(channelId: channelID)
+    init(port: SBrickPort) {
+        self.port = port
+        self.command = .stop(channelId: port.writeChannel)
         self.commandDidChange = false
     }
     
@@ -35,7 +73,7 @@ public class SBrickChannel {
         }
         
         if commandDidChange {
-            self.command = .stop(channelId: channelID)
+            self.command = .stop(channelId: port.writeChannel)
         }
     }
     
@@ -55,7 +93,7 @@ public class SBrickChannel {
         }
         
         if commandDidChange {
-            self.command = .drive(channelId: channelID, cw: isCW, power: power)
+            self.command = .drive(channelId: port.writeChannel, cw: isCW, power: power)
         }
     }
 }

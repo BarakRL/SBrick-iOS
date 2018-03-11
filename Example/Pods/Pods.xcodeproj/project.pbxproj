@@ -12,7 +12,7 @@
 		226B78E8773D981872D91518432E2517 /* SBrickCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570B0F29F1774FA6A876B22E5790599B /* SBrickCommand.swift */; };
 		4D65AA5C16E38947446CCCA605912E52 /* SBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FC6A5067AAE01903CC3DEBE521C98F /* SBrick.swift */; };
 		9CF3437D4E9A4288CA487D81F3615F72 /* SBrick-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1731AA5AFE29C4A44729705D509FFB17 /* SBrick-iOS-dummy.m */; };
-		9D6DA65A5D37ACFC521DEFBA6EDF2501 /* SBrickChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2A04AE1D0AF561E03F4CB4CEE9C9BE /* SBrickChannel.swift */; };
+		9D6DA65A5D37ACFC521DEFBA6EDF2501 /* SBrickPort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2A04AE1D0AF561E03F4CB4CEE9C9BE /* SBrickPort.swift */; };
 		BA154F37C8D6249B642D8A97929C6B49 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EA00AEA27063E54337CB3252DEA73FF /* CoreBluetooth.framework */; };
 		BF1F63668A3F43C1FB496C96B7B37CEA /* SBrickManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89A97DE370AAB8DAA42080F2517897B /* SBrickManager.swift */; };
 		D608FA6FF86BE183DFD4C1039F75CBD0 /* ManufacturerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAA0EDB35C0C59046E7B1FED029BC19 /* ManufacturerData.swift */; };
@@ -42,7 +42,7 @@
 		570B0F29F1774FA6A876B22E5790599B /* SBrickCommand.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SBrickCommand.swift; sourceTree = "<group>"; };
 		686408EA474C5A2EF3DF410C18DE9401 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6DA954A0B83B112F445BDABC7678E0B9 /* Pods-SBrick-iOS_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SBrick-iOS_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		7E2A04AE1D0AF561E03F4CB4CEE9C9BE /* SBrickChannel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SBrickChannel.swift; sourceTree = "<group>"; };
+		7E2A04AE1D0AF561E03F4CB4CEE9C9BE /* SBrickPort.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SBrickPort.swift; sourceTree = "<group>"; };
 		93972F6957789C9E8A0EFA25275C82D1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A69DD6F6E7D992AB18F310B5431FBD5C /* SBrick-iOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "SBrick-iOS.xcconfig"; sourceTree = "<group>"; };
@@ -140,7 +140,7 @@
 			children = (
 				CDAA0EDB35C0C59046E7B1FED029BC19 /* ManufacturerData.swift */,
 				D5FC6A5067AAE01903CC3DEBE521C98F /* SBrick.swift */,
-				7E2A04AE1D0AF561E03F4CB4CEE9C9BE /* SBrickChannel.swift */,
+				7E2A04AE1D0AF561E03F4CB4CEE9C9BE /* SBrickPort.swift */,
 				570B0F29F1774FA6A876B22E5790599B /* SBrickCommand.swift */,
 				E89A97DE370AAB8DAA42080F2517897B /* SBrickManager.swift */,
 				E5BE8D7C2054E78C00B6E31A /* SBrickSensorData.swift */,
@@ -300,7 +300,7 @@
 				9CF3437D4E9A4288CA487D81F3615F72 /* SBrick-iOS-dummy.m in Sources */,
 				E5BE8D7E2054E7B500B6E31A /* SBrickSensorData.swift in Sources */,
 				4D65AA5C16E38947446CCCA605912E52 /* SBrick.swift in Sources */,
-				9D6DA65A5D37ACFC521DEFBA6EDF2501 /* SBrickChannel.swift in Sources */,
+				9D6DA65A5D37ACFC521DEFBA6EDF2501 /* SBrickPort.swift in Sources */,
 				226B78E8773D981872D91518432E2517 /* SBrickCommand.swift in Sources */,
 				BF1F63668A3F43C1FB496C96B7B37CEA /* SBrickManager.swift in Sources */,
 			);

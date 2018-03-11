@@ -36,7 +36,12 @@ public class SBrick: NSObject {
     
     fileprivate var commandsQueue = [SBrickCommandWrapper]()
     
-    public private(set) var channels = [SBrickChannel]()
+    public let port1 = SBrickManagedPort(port: .port1)
+    public let port2 = SBrickManagedPort(port: .port2)
+    public let port3 = SBrickManagedPort(port: .port3)
+    public let port4 = SBrickManagedPort(port: .port4)
+    
+    public let allPorts: [SBrickManagedPort]
     
     init?(peripheral:CBPeripheral, advertisementData: [String : Any]) {
         
@@ -46,43 +51,38 @@ public class SBrick: NSObject {
         self.name = advertisementData[CBAdvertisementDataLocalNameKey] as? String ?? "N/A"
         self.peripheral = peripheral
         self.manufacturerData = manufacturerData
+        self.allPorts = [port1, port2, port3, port4]
         
         super.init()
-                
-        for channelID: UInt8 in 0...3 {
-            
-            let channel = SBrickChannel(channelID: channelID)
-            channels.append(channel)
-        }
         
-        self.updateChannelSampleTimer()
+        self.updatePortsSampleTimer()
     }
     
     
-    private var channelsSampleTimer: Timer?
-    public var channelsSampleInterval: TimeInterval = 0.05 {
+    private var portsSampleTimer: Timer?
+    public var portsSampleInterval: TimeInterval = 0.05 {
         didSet {
             
             //protect
-            if channelsSampleInterval <= 0 {
-                channelsSampleInterval = 0.1
+            if portsSampleInterval <= 0 {
+                portsSampleInterval = 0.1
             }
             
-            self.updateChannelSampleTimer()
+            self.updatePortsSampleTimer()
         }
     }
     
-    private func updateChannelSampleTimer() {
+    private func updatePortsSampleTimer() {
         
-        channelsSampleTimer?.invalidate()
-        channelsSampleTimer = Timer.scheduledTimer(withTimeInterval: self.channelsSampleInterval, repeats: true, block: { [weak self] (timer) in
+        portsSampleTimer?.invalidate()
+        portsSampleTimer = Timer.scheduledTimer(withTimeInterval: self.portsSampleInterval, repeats: true, block: { [weak self] (timer) in
             
             guard let _self = self else { return }
-            for channel in _self.channels {
+            for managedPort in _self.allPorts {
                 
-                if channel.commandDidChange {
-                    channel.commandDidChange = false
-                    _self.send(command: channel.command)
+                if managedPort.commandDidChange {
+                    managedPort.commandDidChange = false
+                    _self.send(command: managedPort.command)
                 }
             }
             

@@ -18,7 +18,6 @@ class ViewController: UIViewController, SBrickManagerDelegate, SBrickDelegate {
     @IBOutlet weak var sensorValueLabel: UILabel!
 
     
-    
     var manager: SBrickManager!
     var sbrick: SBrick?
     
@@ -96,7 +95,7 @@ class ViewController: UIViewController, SBrickManagerDelegate, SBrickDelegate {
         
         //sbrick.send(command: .stop(channelId: 0))
         
-        sbrick.channels[0].stop()
+        sbrick.port1.stop()
     }
     
     @IBAction func halfPowerCW(_ sender: Any) {
@@ -106,7 +105,7 @@ class ViewController: UIViewController, SBrickManagerDelegate, SBrickDelegate {
         //    print("ok")
         //}
         
-        sbrick.channels[0].drive(power: 0x80, isCW: true)
+        sbrick.port1.drive(power: 0x80, isCW: true)
     }
     
     @IBAction func fullPowerCW(_ sender: Any) {
@@ -116,7 +115,7 @@ class ViewController: UIViewController, SBrickManagerDelegate, SBrickDelegate {
         //    print("ok")
         //}
         
-        sbrick.channels[0].drive(power: 0xFF, isCW: true)
+        sbrick.port1.drive(power: 0xFF, isCW: true)
     }
     
     @IBAction func halfPowerCCW(_ sender: Any) {
@@ -126,7 +125,7 @@ class ViewController: UIViewController, SBrickManagerDelegate, SBrickDelegate {
         //    print("ok")
         //}
         
-        sbrick.channels[0].drive(power: 0x80, isCW: false)
+        sbrick.port1.drive(power: 0x80, isCW: false)
     }
     
     @IBAction func fullPowerCCW(_ sender: Any) {
@@ -136,7 +135,7 @@ class ViewController: UIViewController, SBrickManagerDelegate, SBrickDelegate {
         //    print("ok")
         //}
         
-        sbrick.channels[0].drive(power: 0xFF, isCW: false)
+        sbrick.port1.drive(power: 0xFF, isCW: false)
     }
 }
 
