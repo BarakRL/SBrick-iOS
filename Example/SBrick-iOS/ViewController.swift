@@ -50,24 +50,17 @@ class ViewController: UIViewController, SBrickManagerDelegate, SBrickDelegate {
     func testSensor() {
         
         guard let sbrick = self.sbrick else { return }
-        sbrick.send(command: .write(bytes: [0x2C,0x03])) { (bytes) in
-            
-            print(bytes)
-            
-        }
+        sbrick.send(command: .enableSensor(port: .port3))
         
         adcTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { [weak self] (timer) in
             
             guard let sbrick = self?.sbrick else { return }
-            
-            sbrick.send(command: .queryADC(channelId: 0x03)) { (bytes) in
+                        
+            sbrick.send(command: .querySensor(port: .port3)) { (bytes) in
                 
-  
-                let channel = bytes[0] & 0xF
-                let value = bytes[1] * 0x10 + bytes[0] >> 4
-//                let adcValue = bytes.uint16littleEndianValue()
-
-                print("channel: \(channel) value:\(value)")
+                if let sensorData = SBrickSensorData(bytes: bytes) {
+                    print("sensor type: \(sensorData.sensorType) value:\(sensorData.sensorValue)")
+                }
             }
         })
     }

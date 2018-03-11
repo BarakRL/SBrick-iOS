@@ -234,12 +234,14 @@ extension SBrick: CBPeripheralDelegate {
             print("got value for: \(commandWrapper.command)")
         }
         
+        guard let onComplete = commandWrapper.onComplete else { return } //no need to parse data if there's no callback
+        
         DispatchQueue.main.async {
         
             if let data = characteristic.value {
-                self.parse(bytes: [UInt8](data), onComplete: commandWrapper.onComplete)
+                self.parse(bytes: [UInt8](data), onComplete: onComplete)
             }
-            else if let onComplete = commandWrapper.onComplete {
+            else {
                 onComplete([])
             }
         }
