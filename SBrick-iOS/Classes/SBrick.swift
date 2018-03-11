@@ -228,7 +228,7 @@ extension SBrick: CBPeripheralDelegate {
             return
         }
         
-//        guard characteristic.uuid == CBUUID(string: SBrick.RemoteControlCommandsCharacteristicUUID) else { return }        
+        //guard characteristic.uuid == CBUUID(string: SBrick.RemoteControlCommandsCharacteristicUUID) else { return }
         
         guard self.commandsQueue.count > 0 else { return }
         let commandWrapper = self.commandsQueue.remove(at: 0)
@@ -238,7 +238,8 @@ extension SBrick: CBPeripheralDelegate {
             break
             
         default:
-            print("got value for: \(commandWrapper.command)")
+            //print("got value for: \(commandWrapper.command)")
+            break
         }
         
         guard let onComplete = commandWrapper.onComplete else { return } //no need to parse data if there's no callback
