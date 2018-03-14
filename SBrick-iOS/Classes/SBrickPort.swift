@@ -15,7 +15,7 @@ public enum SBrickPort: Int, Codable {
     case port3 = 3
     case port4 = 4
     
-    var writeChannel: UInt8 {
+    public var writeChannel: UInt8 {
         
         switch self {
         case .port1: return 0x00
@@ -25,7 +25,7 @@ public enum SBrickPort: Int, Codable {
         }
     }
     
-    var readChannelA: UInt8 {
+    public var readChannelA: UInt8 {
         
         switch self {
         case .port1: return 0x00
@@ -35,7 +35,7 @@ public enum SBrickPort: Int, Codable {
         }
     }
     
-    var readChannelB: UInt8 {
+    public var readChannelB: UInt8 {
         
         switch self {
         case .port1: return 0x01
@@ -52,6 +52,15 @@ public class SBrickManagedPort {
     
     public let port: SBrickPort
     public private(set) var command: SBrickCommand
+    
+    public var isDriving: Bool {
+        
+        switch self.command {
+        case .stop(_): return false
+        case .drive(_, _, let power): return power > 0
+        default: return false
+        }
+    }
     
     internal var commandDidChange: Bool = false
     
