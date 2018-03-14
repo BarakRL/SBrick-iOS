@@ -35,6 +35,18 @@ func sbrickManager(_ sbrickManager: SBrickManager, didDiscover sbrick: SBrick) {
 func sbrickReady(_ sbrick: SBrick) {
     //send a command
     sbrick.send(command: .drive(channelId: 0, cw: true, power: 0xFF))
+    
+    //use managed ports for simple control
+    sbrick.port1.drive(power: 0x80, isCW: true)
+    
+    //get wedo sensor data
+    sbrick.send(command: .enableSensor(port: .port2))
+    sbrick.send(command: .querySensor(port: .port2)) { [weak self] (bytes) in
+                
+        if let sensorData = SBrickSensorData(bytes: bytes) {                    
+            print("sensor type: \(sensorData.sensorType) value:\(sensorData.sensorValue)")
+        }
+    }
 }
 ```
 
